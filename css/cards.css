@@ -1,0 +1,154 @@
+.bg-color {
+    background-color: #600a15;
+    color: white;
+}
+
+.card {
+    width:66mm;
+    min-width:66mm;
+    height:95mm;
+    border: 2mm solid;
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+    font-size: 8pt;
+}
+
+.content-container {
+    padding:2mm;
+    padding-top:1mm;
+    border-radius: 2mm;
+    margin-top:0px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-back {
+    background-color: white;
+    border-radius: 4mm;
+    border-color: inherit;
+    margin: 2mm;
+    flex: 1;
+    display: flex;
+}
+
+.card-back-inner {
+    margin: 2mm;
+    border: 1mm solid;
+    border-color: inherit;
+    border-radius: 4mm;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-icon {
+    width: 30mm;
+    height: 30mm;
+    border: 4mm solid;
+    border-color: inherit;
+    border-radius: 4mm;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.title-icon {
+    width: 12mm;
+    height: 12mm;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: inherit;
+    border-color: inherit;
+}
+.title-icon-container {
+    position: absolute;
+    right: -1mm;
+    top: -1mm;
+    border: 1mm solid;
+    border-radius: 1mm;
+    background-color: inherit;
+    border-color: inherit;
+}
+
+.title {
+    height: 28px;
+    line-height: 23px;
+    padding-left: 2mm;
+    font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 13pt;
+    background-color: inherit;
+    color: white;
+}
+.subtitle {
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 1mm;
+    font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    font-style: italic;
+}
+
+.property-line {
+    text-indent: -1em;
+    margin-left: 1em;
+}
+
+.property-name {
+    display: inline;
+}
+.property-text {
+    display: inline;
+}
+
+h3 {
+    border-bottom: 1px solid;
+    font-size: 10pt;
+    font-variant: small-caps;
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin: 0;
+    margin-bottom: 0.3em;
+}
+
+p {
+    margin-top: 0.0em;
+    margin-bottom: 0.5em;
+}
+
+
+.fill-1 {flex:1;}
+.fill-2 {flex:2;}
+.fill-3 {flex:3;}
+.fill-4 {flex:4;}
+.fill-5 {flex:5;}
+.fill-6 {flex:6;}
+
+.description-line {
+    margin-bottom: 0.5em;
+}
+.description-name {
+    display: inline;
+}
+.description-text {
+    display: inline;
+}
+
+.ruler {
+    /*content: url(../img/ruler.svg);*/
+    width: 60mm;
+    height: 1.5mm;
+    margin-top: 0.5em;
+    margin-bottom: 0.2em;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url(../img/ruler2.svg);
+}

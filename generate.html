@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>D&D cards</title>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/page.css">
+    <link rel="stylesheet" type="text/css" href="css/cards.css">
+    <link rel="stylesheet" type="text/css" href="css/icons.css">
+    <link rel="stylesheet" type="text/css" href="css/custom-icons.css">
+    <link rel="stylesheet" type="text/css" href="css/colors.css">
+    <link rel="stylesheet" type="text/css" href="css/custom-colors.css">
+    <!-- Data -->
+    <script type="text/javascript" src="data/card_data.js"></script>
+    <script type="text/javascript" src="data/card_data_example.js"></script>
+    <!-- Javascript -->
+    <script type="text/javascript" defer src="js/cards.js"></script>
+    <script type="text/javascript" defer src="js/control.js"></script>
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora:700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="container">
+        <h1>Disclaimer</h1>
+        <p>
+            All material related to <a href="http://dnd.wizards.com/">Dungeons and Dragons</a> 5th edition is copyright by <a href="http://company.wizards.com/">Wizards of the Coast</a>.
+            This site uses information freely available from their basic rules that can be found <a href="http://dnd.wizards.com/articles/features/basicrules?x=dnd/basicrules">here</a>.
+            This probably does not mean you can freely distribute any material derived from there -
+            if you are Wizards of the Coast and have concerns issues with this project, contact me <a href="mailto:robin@dbservice.com">here</a>.
+        </p>
+        <p>
+            All icons are from <a href="game-icons.net">game-icons.net</a>,
+            an awesome project providing free icons for games.
+            Parts of the CSS are copied from <a href="http://valloric.github.io/statblock5e/">statblock5e</a>,
+            a project that tries to re-create pixel-precise monster stat blocks from the monster manual.
+        </p>
+        <p>
+            Click on the button below to transform the huge wall of text at the bottom into beautiful(?) spell and item cards.
+            The cards are generated via Javascript in HTML, the card layout is such that 3x3 cards fill out an A4 page.
+            In theory, you should be able to print the whole page (double-sided printing, flip on long edge) and get double-sided cards.
+            However, I am no CSS expert, so the layout might be a bit off.
+        </p>
+        <p>
+            It should be reasonably simple to understand the JSON format I have used from the below examples, so that you can design your own cards.
+            Just don't forget to save your JSON file externally.
+            You can download the whole project for offline use <a href="cards.zip">here</a>
+            (note that it uses <a href="https://www.google.com/fonts">google fonts</a>, so unless you are online, the fonts will be different).
+        </p>
+        <button type="button" class="input-button">Generate</button>
+        <textarea rows="40" cols="120" class="input-data">
+            
+        </textarea>
+    </div>
+</body>
+</html>

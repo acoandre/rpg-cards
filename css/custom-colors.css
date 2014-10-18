@@ -1,0 +1,113 @@
+/* arcane */
+.color-arcane {
+    background-color: #bb3d2f;
+    border-color: #bb3d2f;
+}
+.color-arcane .ruler {
+    background-color: #bb3d2f;
+}
+.color-arcane h3{
+    border-color: #bb3d2f;
+    color: #bb3d2f;
+}
+.color-arcane .card-back {
+    background: radial-gradient(ellipse at center, white 20%, #bb3d2f 120%);
+}
+.color-arcane .back-icon {
+    background-color: #bb3d2f;
+}
+
+/* cleric */
+.color-cleric {
+    background-color: #ae7b00;
+    border-color: #ae7b00;
+}
+.color-cleric .ruler {
+    background-color: #ae7b00;
+}
+.color-cleric h3{
+    border-color: #ae7b00;
+    color: #ae7b00;
+}
+.color-cleric .card-back {
+    background: radial-gradient(ellipse at center, white 20%, #ae7b00 120%);
+}
+.color-cleric .back-icon {
+    background-color: #ae7b00;
+}
+
+/* rogue */
+.color-rogue {
+    background-color: #802161;
+    border-color: #802161;
+}
+.color-rogue .ruler {
+    background-color: #802161;
+}
+.color-rogue h3{
+    border-color: #802161;
+    color: #802161;
+}
+.color-rogue .card-back {
+    background: radial-gradient(ellipse at center, white 20%, #802161 120%);
+}
+.color-rogue .back-icon {
+    background-color: #802161;
+}
+
+/* weapon */
+.color-weapon {
+    background-color: dimgray;
+    border-color: dimgray;
+}
+.color-weapon .ruler {
+    background-color: dimgray;
+}
+.color-weapon h3{
+    border-color: dimgray;
+    color: dimgray;
+}
+.color-weapon .card-back {
+    background: radial-gradient(ellipse at center, white 20%, dimgray 120%);
+}
+.color-weapon .back-icon {
+    background-color: dimgray;
+}
+
+/* armor */
+.color-armor {
+    background-color: dimgray;
+    border-color: dimgray;
+}
+.color-armor .ruler {
+    background-color: dimgray;
+}
+.color-armor h3{
+    border-color: dimgray;
+    color: dimgray;
+}
+.color-armor .card-back {
+    background: radial-gradient(ellipse at center, white 20%, dimgray 120%);
+}
+.color-armor .back-icon {
+    background-color: dimgray;
+}
+
+/* gear */
+.color-gear {
+    background-color: dimgray;
+    border-color: dimgray;
+}
+.color-gear .ruler {
+    background-color: dimgray;
+}
+.color-gear h3{
+    border-color: dimgray;
+    color: dimgray;
+}
+.color-gear .card-back {
+    background: radial-gradient(ellipse at center, white 20%, dimgray 120%);
+}
+.color-gear .back-icon {
+    background-color: dimgray;
+}
