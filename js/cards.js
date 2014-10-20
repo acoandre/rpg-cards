@@ -1,4 +1,24 @@
 // ============================================================================
+// Card definition related functions
+// ============================================================================
+
+function card_data_color_front(card_data) {
+    return card_data.color_front || card_data.color || "black";
+}
+
+function card_data_color_back(card_data) {
+    return card_data.color_back || card_data.color || "black";
+}
+
+function card_data_icon_front(card_data) {
+    return card_data.icon_front || card_data.icon || "ace";
+}
+
+function card_data_icon_back(card_data) {
+    return card_data.icon_back || card_data.icon || "ace";
+}
+
+// ============================================================================
 // Card element generating functions
 // ============================================================================
 
@@ -8,7 +28,7 @@ function card_element_title(card_data) {
 }
 
 function card_element_icon(card_data) {
-    var icon = card_data.icon_front || card_data.icon;
+    var icon = card_data_icon_front(card_data);
     var result = "";
     if (icon) {
         result += '<div class="title-icon-container">';
@@ -25,7 +45,15 @@ function card_element_subtitle(params, card_data) {
 }
 
 function card_element_ruler(params, card_data) {
-    return '<div class="ruler"></div>';
+    var color = card_data_color_front(card_data);
+    var fill = 'fill="' + color + '"';
+    var stroke = 'stroke="' + color + '"';
+
+    var result = "";
+    result += '<svg class="ruler" height="1" width="100" viewbox="0 0 100 1" preserveaspectratio="none" xmlns="http://www.w3.org/2000/svg">';
+    result += '    <polyline points="0,0 100,0.5 0,1" ' + fill + '></polyline>';
+    result += '</svg>';
+    return result;
 }
 
 function card_element_property(params, card_data) {
@@ -75,7 +103,8 @@ var card_element_generators = {
     rule: card_element_ruler,
     description: card_element_description,
     text: card_element_text,
-    fill: card_element_fill
+    fill: card_element_fill,
+    section: card_element_section
 };
 
 // ============================================================================
@@ -117,9 +146,8 @@ function card_generate_color_gradient_style(color) {
 }
 
 function card_generate_front(data) {
-    var color = data.color_front || data.color || "black";
+    var color = card_data_color_front(data);
     var style_color = card_generate_color_style(color);
-    var icon = data.icon_front || data.icon || "";
     var count = data.count || 1;
 
     var result = "";
@@ -133,10 +161,10 @@ function card_generate_front(data) {
 }
 
 function card_generate_back(data) {
-    var color = data.color_back || data.color || "black";
+    var color = card_data_color_back(data)
     var style_color = card_generate_color_style(color);
     var style_gradient = card_generate_color_gradient_style(color);
-    var icon = data.icon_back || data.icon || "ace";
+    var icon = card_data_icon_back(data);
     var count = data.count || 1;
 
     var result = "";
