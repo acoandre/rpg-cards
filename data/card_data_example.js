@@ -130,5 +130,3 @@ var card_data_example = [
         ]
     }
 ];
-
-card_data = card_data.concat(card_data_example);

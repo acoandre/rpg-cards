@@ -1,3 +1,6 @@
+// Ugly global variable holding the current card deck
+var card_data = [];
+
 function ui_generate() {
     // Generate output HTML
     var card_html = card_pages_generate_html(card_data);
@@ -13,10 +16,12 @@ function ui_generate() {
 
 function ui_load_sample() {
     card_data = card_data_example;
+    ui_update_card_list();
 }
 
 function ui_clear_all() {
     card_data = [];
+    ui_update_card_list();
 }
 
 function ui_load_files(evt) {
@@ -29,10 +34,33 @@ function ui_load_files(evt) {
 
         reader.onload = function (reader) {
             var data = JSON.parse(this.result);
-            card_data = card_data.concat(data);
+            ui_add_cards(data);
         };
 
         reader.readAsText(f);
+    }
+}
+
+function ui_add_cards(data) {
+    card_data = card_data.concat(data);
+    ui_update_card_list();
+}
+
+function ui_add_new_card() {
+    card_data.push(card_default_data());
+    ui_update_card_list();
+}
+
+function ui_update_card_list() {
+    $("#total_card_count").text("Deck contains " + card_data.length + " cards.");
+
+    $('#selected_card').empty();
+    for (var i = 0; i < card_data.length; ++i) {
+        var card = card_data[i];
+        $('#selected_card')
+            .append($("<option></option>")
+            .attr("value", i)
+            .text(card.title));
     }
 }
 
@@ -56,6 +84,8 @@ $(document).ready(function () {
     $("#file-load").change(ui_load_files);
     $("#button-load-sample").click(ui_load_sample);
     $("#button-save").click(ui_save_file);
+
+    ui_update_card_list();
 });
 
 

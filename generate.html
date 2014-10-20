@@ -12,7 +12,6 @@
     <link href="lib/colorpicker/css/bootstrap-colorselector.css" rel="stylesheet" />
     <script type="text/javascript" src="lib/colorpicker/js/bootstrap-colorselector.js" charset="utf-8"></script>
     <!-- Data -->
-    <script type="text/javascript" src="data/card_data.js"></script>
     <script type="text/javascript" src="data/card_data_example.js"></script>
     <!-- Javascript -->
     <script type="text/javascript" defer src="js/cards.js"></script>
@@ -82,9 +81,10 @@
             <div class="col-md-3">
                 <h3>Card list</h3>
                 <form role="form">
+                    <span class="help-block" id="total_card_count">Deck contains 0 cards.</span>
                     <div class="form-group">
                         <label for="selected_card">Selected card</label>
-                        <select class="form-control" id="selected_card" readonly></select>
+                        <select class="form-control" id="selected_card"></select>
                     </div>
                     <button type="button" class="btn btn-primary btn-block disabled">Delete selected card</button>
                     <button type="button" class="btn btn-primary btn-block disabled">Add new card</button>
