@@ -2,7 +2,7 @@ var card_data = [
     {
         "count": 1,
         "color": "maroon",
-        "title": "Burning Hands",
+        "title": "Protection from Energy",
         "icon": "custom-spell-1",
         "icon_back": "custom-class-arcane",
         "contents": [

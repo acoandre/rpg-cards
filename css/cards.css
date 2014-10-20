@@ -78,14 +78,32 @@
     border-color: inherit;
 }
 
+.title-inlineicon {
+    width: 7mm;
+    height: 7mm;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: inherit;
+    border-color: inherit;
+}
+.title-inlineicon-container {
+    position: absolute;
+    right: -1mm;
+    top: -1mm;
+    border: 1mm solid;
+    border-radius: 1mm;
+    background-color: inherit;
+    border-color: inherit;
+}
+
 .title {
-    height: 28px;
-    line-height: 23px;
+    height: 8mm;
+    line-height: 6mm;
     padding-left: 2mm;
     font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
     font-variant: small-caps;
     font-weight: bold;
-    font-size: 13pt;
+    font-size: 14pt;
     background-color: inherit;
     color: white;
 }
