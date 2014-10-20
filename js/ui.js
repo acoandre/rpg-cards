@@ -1,4 +1,4 @@
-function on_generate() {
+function ui_generate() {
     // Generate output HTML
     var card_html = card_pages_generate_html(card_data);
 
@@ -11,13 +11,36 @@ function on_generate() {
     setTimeout(function () { tab.postMessage(card_html, '*') }, 100);
 }
 
-function on_load_sample() {
+function ui_load_sample() {
     card_data = card_data_example;
 }
 
+function ui_clear_all() {
+    card_data = [];
+}
+
+function ui_load_files(evt) {
+    ui_clear_all();
+
+    var files = evt.target.files;
+
+    for (var i = 0, f; f = files[i]; i++) {
+        var reader = new FileReader();
+
+        reader.onload = function (reader) {
+            var data = JSON.parse(this.result);
+            card_data = card_data.concat(data);
+        };
+
+        reader.readAsText(f);
+    }
+}
+
 $(document).ready(function () {
-    $("#button-generate").click(on_generate);
-    $("#button-load-sample").click(on_load_sample);
+    $("#button-generate").click(ui_generate);
+    $("#button-load").click(function () { $("#file-load").click(); });
+    $("#file-load").change(ui_load_files);
+    $("#button-load-sample").click(ui_load_sample);
 });
 
 
