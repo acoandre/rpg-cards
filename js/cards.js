@@ -1,119 +1,172 @@
-function card_title(text) {
-    return '<div class="title">' + text + '</div>';
+// ============================================================================
+// Card element generating functions
+// ============================================================================
+
+function card_element_title(card_data) {
+    var title = card_data.title || "";
+    return '<div class="title">' + title + '</div>';
 }
 
-function card_subtitle(text) {
-    return '<div class="subtitle">' + text + '</div>';
+function card_element_icon(card_data) {
+    var icon = card_data.icon_front || card_data.icon;
+    var result = "";
+    if (icon) {
+        result += '<div class="title-icon-container">';
+        result += '    <div class="title-icon icon-' + icon + '">';
+        result += '    </div>';
+        result += '</div>';
+    }
+    return result;
 }
 
-function card_ruler() {
+function card_element_subtitle(params, card_data) {
+    var subtitle = params[0] || "";
+    return '<div class="subtitle">' + subtitle + '</div>';
+}
+
+function card_element_ruler(params, card_data) {
     return '<div class="ruler"></div>';
 }
 
-function card_property(name, text) {
+function card_element_property(params, card_data) {
     var result = "";
     result += '<div class="property-line">';
-    result += '   <h4 class="property-name">' + name.trim() + '</h4>';
-    result += '   <p class="property-text">' + text.trim() + '</p>';
+    result += '   <h4 class="property-name">' + params[0] + '</h4>';
+    result += '   <p class="property-text">' + params[1] + '</p>';
     result += '</div>';
     return result;
 }
 
-function card_description(name, text) {
+function card_element_description(params, card_data) {
     var result = "";
     result += '<div class="description-line">';
-    result += '   <h4 class="description-name">' + name.trim() + '</h4>';
-    result += '   <p class="description-text">' + text.trim() + '</p>';
+    result += '   <h4 class="description-name">' + params[0] + '</h4>';
+    result += '   <p class="description-text">' + params[1] + '</p>';
     result += '</div>';
     return result;
 }
 
-function card_section(text) {
-    return '<h3>'+text+'</h3>';
-}
-
-function card_fill1() {
-    return '<div class="fill-1"></div>';
-}
-function card_fill2() {
-    return '<div class="fill-2"></div>';
-}
-function card_fill3() {
-    return '<div class="fill-3"></div>';
-}
-function card_fill4() {
-    return '<div class="fill-4"></div>';
-}
-
-function card_icon(name) {
+function card_element_text(params, card_data) {
     var result = "";
-    result += '<div class="title-icon-container">';
-    result += '    <div class="title-icon icon-' + name + '">';
-    result += '    </div>';
+    result += '<div class="description-line">';
+    result += '   <p class="description-text">' + params[0] + '</p>';
     result += '</div>';
     return result;
 }
 
-function card_contents(contents) {
+function card_element_section(params, card_data) {
+    var color = card_data.color_front || card_data.color;
+    var section = params[0] || "";
+    return '<h3 style="color:' + color + '">' + section + '</h3>';
+}
+
+function card_element_fill(params, card_data) {
+    var flex = params[0] || "1";
+    return '<div class="fill" style="flex:' + flex + '"></div>';
+}
+
+function card_element_unknown(params, card_data) {
+    return '<div>' + params.join('<br />') + '</div>';
+}
+
+var card_element_generators = {
+    subtitle: card_element_subtitle,
+    property: card_element_property,
+    rule: card_element_ruler,
+    description: card_element_description,
+    text: card_element_text,
+    fill: card_element_fill
+};
+
+// ============================================================================
+// Card generating functions
+// ============================================================================
+
+function card_generate_contents(contents, card_data) {
     var result = "";
     result += '<div class="content-container">';
     result += contents.map(function (value) {
         var parts = value.split("|").map(function (str) { return str.trim(); });
-        switch (parts[0]) {
-            case 'subtitle': return card_subtitle(parts[1], parts[2]); break;
-            case 'property': return card_property(parts[1], parts[2]); break;
-            case 'rule': return card_ruler(); break;
-            case 'description': return card_description(parts[1], parts[2]); break;
-            case 'text': return card_description("", parts[1]); break;
-            case 'fill-1': return card_fill1(); break;
-            case 'fill-2': return card_fill2(); break;
-            case 'fill-3': return card_fill3(); break;
-            case 'fill-4': return card_fill4(); break;
-            case 'section': return card_section(parts[1]); break;
-            default: return "";
+        var element_name = parts[0];
+        var element_params = parts.splice(1);
+        var element_generator = card_element_generators[element_name];
+        if (element_generator) {
+            return element_generator(element_params, card_data);
+        } else {
+            return card_element_unknown(element_params, card_data);
         }
     }).join("\n");
     result += '</div>';
     return result;
 }
 
-var card_default_data = {
-    count:1,
-    title:"",
-    icon:"",
-    contents:[],
-    color: "white"
-}
-
-function card(data) {
-    var front = "";
-    var back = "";
-
-    front += '<div class="card color-' + data.color + '">';
-    front += card_icon(data.icon);
-    front += card_title(data.title);
-    front += card_contents(data.contents);
-    front += '</div>';
-
-    var icon_back = data.icon_back || data.icon;
-    back += '<div class="card color-' + data.color + '">';
-    back += '  <div class="card-back">';
-    back += '    <div class="card-back-inner">';
-    back += '      <div class="back-icon icon-' + icon_back + '"></div>';
-    back += '    </div>';
-    back += '  </div>';
-    back += '</div>';
-
-    var count = data.count || 1;
-    var result = { front: [], back: [] };
+function card_repeat(card, count) {
+    var result = [];
     for (var i = 0; i < count; ++i) {
-        result.front.push(front);
-        result.back.push(back);
+        result.push(card);
     }
     return result;
 }
 
-function card_split_pages(data, cards_per_page) {
+function card_generate_color_style(color) {
+    return 'style="color:' + color + '; border-color:' + color + '; background-color:' + color + '"';
+}
+
+function card_generate_color_gradient_style(color) {
+    return 'style="background: radial-gradient(ellipse at center, white 20%, ' + color + ' 120%)"';
+}
+
+function card_generate_front(data) {
+    var color = data.color_front || data.color || "black";
+    var style_color = card_generate_color_style(color);
+    var icon = data.icon_front || data.icon || "";
+    var count = data.count || 1;
+
+    var result = "";
+    result += '<div class="card" ' + style_color + '>';
+    result += card_element_icon(data);
+    result += card_element_title(data);
+    result += card_generate_contents(data.contents, data);
+    result += '</div>';
+
+    return card_repeat(result, count);
+}
+
+function card_generate_back(data) {
+    var color = data.color_back || data.color || "black";
+    var style_color = card_generate_color_style(color);
+    var style_gradient = card_generate_color_gradient_style(color);
+    var icon = data.icon_back || data.icon || "ace";
+    var count = data.count || 1;
+
+    var result = "";
+    result += '<div class="card" ' + style_color + '>';
+    result += '  <div class="card-back" ' + style_gradient + '>';
+    result += '    <div class="card-back-inner">';
+    result += '      <div class="back-icon icon-' + icon + '" ' + style_color + '></div>';
+    result += '    </div>';
+    result += '  </div>';
+    result += '</div>';
+
+    return card_repeat(result, count);
+}
+
+function card_generate_empty(count) {
+    var style_color = card_generate_color_style("white");
+
+    var result = "";
+    result += '<div class="card" ' + style_color + '>';
+    result += '</div>';
+
+    return card_repeat(result, count);
+}
+
+// ============================================================================
+// Functions that generate pages of cards
+// ============================================================================
+
+function card_pages_split(data, rows, cols) {
+    var cards_per_page = rows * cols;
     var result = [];
     for (var i = 0; i < data.length; i += cards_per_page) {
         var page = data.slice(i, i + cards_per_page);
@@ -122,56 +175,88 @@ function card_split_pages(data, cards_per_page) {
     return result;
 }
 
-function cards_flip_left_right(cards) {
-    return [
-        cards[2], cards[1], cards[0],
-        cards[5], cards[4], cards[3],
-        cards[8], cards[7], cards[6]
-    ];
+function card_pages_merge(front_pages, back_pages) {
+    var result = [];
+    for (var i = 0; i < front_pages.length; ++i) {
+        result.push(front_pages[i]);
+        result.push(back_pages[i]);
+    }
+    return result;
 }
 
-function card_generate_html(datas) {
-    var front = [];
-    var back = [];
-
-    // Generate HTML for each card
-    datas.forEach(function (data) {
-        var result = card(data);
-        front = front.concat(result.front);
-        back = back.concat(result.back);
-    });
-
-    // Fill the last page with blank cards
-    if (front.length % 9 !== 0) {
-        var result = card(card_default_data);
-        for (var i = front.length % 9; i < 9; ++i) {
-            front = front.concat(result.front);
-            back = back.concat(result.back);
+function cards_pages_flip_left_right(cards, rows, cols) {
+    var result = [];
+    for (var r = 0; r < rows; ++r) {
+        for (var c = 0; c < cols; ++c) {
+            var i = r*cols + (cols-1-c);
+            result.push(cards[i]);
         }
     }
+    return result;
+}
 
-    // Split pages
-    front_pages = card_split_pages(front, 9);
-    back_pages = card_split_pages(back, 9);
-
-    // Clear the previous content of the document
-    var parent_element = document.getElementsByClassName("container")[0];
-    while (parent_element.hasChildNodes()) {
-        parent_element.removeChild(parent_element.lastChild);
-    }
-
-    // Add generated HTML to the document
-    for (var i = 0; i < front_pages.length; ++i) {
-        var page = document.createElement("page");
-        page.setAttribute("size", "A4");
-        page.innerHTML = front_pages[i].join("\n");
-        parent_element.appendChild(page);
-
-        var page = document.createElement("page");
-        page.setAttribute("size", "A4");
-        page.innerHTML = cards_flip_left_right(back_pages[i]).join("\n");
-        parent_element.appendChild(page);
+function card_pages_add_padding(cards, rows, cols) {
+    var cards_per_page = rows * cols;
+    var last_page_cards = cards.length % cards_per_page;
+    if (last_page_cards !== 0) {
+        return cards.concat(card_generate_empty(cards_per_page - last_page_cards));
+    } else {
+        return cards;
     }
 }
 
-//card_generate_html(card_data);
+function card_pages_wrap(pages) {
+    var size = "A4";
+
+    var result = "";
+    for (var i = 0; i < pages.length; ++i) {
+        result += '<page size="' + size + '">\n';
+        result += pages[i].join("\n");
+        result += '</page>\n';
+    }
+    return result;
+}
+
+function card_pages_generate_html(card_data) {
+    var rows = 3;
+    var cols = 3;
+
+    // Generate the HTML for each card
+    var front_cards = [];
+    var back_cards = [];
+    card_data.forEach(function (data) {
+        front_cards = front_cards.concat(card_generate_front(data));
+        back_cards = back_cards.concat(card_generate_back(data));
+    });
+
+    // Add padding cards so that the last page is full of cards
+    front_cards = card_pages_add_padding(front_cards, rows, cols);
+    back_cards = card_pages_add_padding(back_cards, rows, cols);
+
+    // Split cards to pages
+    var front_pages = card_pages_split(front_cards, rows, cols);
+    var back_pages = card_pages_split(back_cards, rows, cols);
+
+    // Shuffle back cards so that they line up with their corresponding front cards
+    back_pages = back_pages.map(function (page) {
+        return cards_pages_flip_left_right(page, rows, cols);
+    });
+
+    // Interleave front and back pages so that we can print double-sided
+    var pages = card_pages_merge(front_pages, back_pages);
+
+    // Wrap all pages in a <page> element
+    return card_pages_wrap(pages);
+}
+
+function card_pages_insert_into(card_data, container) {
+
+    // Clear the previous content of the document
+    while (container.hasChildNodes()) {
+        container.removeChild(container.lastChild);
+    }
+
+    // Insert the HTML
+    var html = card_pages_generate_html(card_data);
+    container.innerHTML = html;
+}
