@@ -51,9 +51,12 @@ function ui_add_new_card() {
     ui_update_card_list();
 }
 
+function ui_selected_card_index() {
+    return parseInt($("#selected_card").val(), 10);
+}
+
 function ui_delete_card() {
-    var selected_card = parseInt($("#selected_card").val(), 10);
-    card_data.splice(selected_card, 1);
+    card_data.splice(ui_selected_card_index(), 1);
     ui_update_card_list();
 }
 
@@ -68,6 +71,8 @@ function ui_update_card_list() {
             .attr("value", i)
             .text(card.title));
     }
+
+    ui_update_selected_card();
 }
 
 function ui_save_file() {
@@ -84,6 +89,15 @@ function ui_save_file() {
     URL.revokeObjectURL(url);
 }
 
+function ui_update_selected_card() {
+    var card = card_data[ui_selected_card_index()];
+    if (card) {
+        $("#card_title").val(card.title);
+        $("#card_icon").val(card.icon);
+        $("#card_contents").val(card.contents.join("\n"));
+    }
+}
+
 $(document).ready(function () {
     $("#button-generate").click(ui_generate);
     $("#button-load").click(function () { $("#file-load").click(); });
@@ -92,6 +106,8 @@ $(document).ready(function () {
     $("#button-save").click(ui_save_file);
     $("#button-add-card").click(ui_add_new_card);
     $("#button-delete-card").click(ui_delete_card);
+    $("#selected_card").change(ui_update_selected_card);
+
     ui_update_card_list();
 });
 
