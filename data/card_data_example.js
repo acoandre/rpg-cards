@@ -2,7 +2,7 @@ var card_data = [
     {
         "count": 1,
         "color": "maroon",
-        "title": "Protection from Energy",
+        "title": "Burning Hands",
         "icon": "custom-spell-1",
         "icon_back": "custom-class-arcane",
         "contents": [
@@ -76,7 +76,8 @@ var card_data = [
     {
         "count": 1,
         "color": "dimgray",
-        "title": "Shortsword",
+        "title": "Shortsword of Very Long Names",
+        "title_size": "tiny",
         "icon": "custom-swords",
         "contents": [
             "subtitle | Simple melee weapon (10gp)",

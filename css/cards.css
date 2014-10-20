@@ -98,15 +98,30 @@
 
 .title {
     height: 8mm;
-    line-height: 6mm;
     padding-left: 2mm;
     font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
     font-variant: small-caps;
     font-weight: bold;
-    font-size: 14pt;
     background-color: inherit;
     color: white;
 }
+.title-big {
+    font-size: 6mm;
+    line-height: 6mm;
+}
+.title-normal {
+    font-size: 5mm;
+    line-height: 6mm;
+}
+.title-small {
+    font-size: 4mm;
+    line-height: 6.5mm;
+}
+.title-tiny {
+    font-size: 3.5mm;
+    line-height: 6.75mm;
+}
+
 .subtitle {
     height: 18px;
     line-height: 18px;
