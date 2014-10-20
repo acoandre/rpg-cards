@@ -36,11 +36,26 @@ function ui_load_files(evt) {
     }
 }
 
+function ui_save_file() {
+    var str = JSON.stringify(card_data, null, "  ");
+    var parts = [str];
+    var blob = new Blob(parts, { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+
+    var a = $("#file-save-link")[0];
+    a.href = url;
+    a.download = "rpg_cards.json";
+    a.click();
+
+    URL.revokeObjectURL(url);
+}
+
 $(document).ready(function () {
     $("#button-generate").click(ui_generate);
     $("#button-load").click(function () { $("#file-load").click(); });
     $("#file-load").change(ui_load_files);
     $("#button-load-sample").click(ui_load_sample);
+    $("#button-save").click(ui_save_file);
 });
 
 

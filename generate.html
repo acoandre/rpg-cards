@@ -28,7 +28,7 @@
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <strong>Experimental user interface!</strong>
                 This user interface is experimental and largely non-functional.
-                The only thing that works right now are the "load sample cards", "load cards from file" and "generate cards" buttons.
+                The only thing that works right now are the "load sample cards", "load cards from file", "save cards", and "generate cards" buttons.
             </div>
             <div class="alert alert-warning alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -71,6 +71,7 @@
                         </select>
                     </div>
                     <input type="file" id="file-load" name="files[]" multiple class="form-control" style="display:none" />
+                    <a href="" id="file-save-link" style="display:none">Hidden download link</a>
                     <button type="button" class="btn btn-primary btn-block" id="button-load">Load cards from file</button>
                     <button type="button" class="btn btn-primary btn-block" id="button-save">Save cards</button>
                     <button type="button" class="btn btn-primary btn-block" id="button-load-sample">Load sample cards</button>
