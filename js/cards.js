@@ -44,7 +44,7 @@ function card_data_split_params(value) {
 function card_element_title(card_data, options) {
     var title = card_data.title || "";
     var title_size = card_data.title_size || options.default_title_size || 'normal';
-    return '<div class="title title-' + title_size + '">' + title + '</div>';
+    return '<div class="card-title card-title-' + title_size + '">' + title + '</div>';
 }
 
 function card_element_icon(card_data, options) {
@@ -55,8 +55,8 @@ function card_element_icon(card_data, options) {
     }
 
     var result = "";
-    result += '<div class="title-'+classname+'-container">';
-    result += '    <div class="title-' + classname + ' icon-' + icon + '">';
+    result += '<div class="card-title-' + classname + '-container">';
+    result += '    <div class="card-title-' + classname + ' icon-' + icon + '">';
     result += '    </div>';
     result += '</div>';
     return result;
@@ -64,7 +64,7 @@ function card_element_icon(card_data, options) {
 
 function card_element_subtitle(params, card_data, options) {
     var subtitle = params[0] || "";
-    return '<div class="subtitle">' + subtitle + '</div>';
+    return '<div class="card-subtitle">' + subtitle + '</div>';
 }
 
 function card_element_ruler(params, card_data, options) {
@@ -73,7 +73,7 @@ function card_element_ruler(params, card_data, options) {
     var stroke = 'stroke="' + color + '"';
 
     var result = "";
-    result += '<svg class="ruler" height="1" width="100" viewbox="0 0 100 1" preserveaspectratio="none" xmlns="http://www.w3.org/2000/svg">';
+    result += '<svg class="card-ruler" height="1" width="100" viewbox="0 0 100 1" preserveaspectratio="none" xmlns="http://www.w3.org/2000/svg">';
     result += '    <polyline points="0,0 100,0.5 0,1" ' + fill + '></polyline>';
     result += '</svg>';
     return result;
@@ -81,26 +81,26 @@ function card_element_ruler(params, card_data, options) {
 
 function card_element_property(params, card_data, options) {
     var result = "";
-    result += '<div class="property-line">';
-    result += '   <h4 class="property-name">' + params[0] + '</h4>';
-    result += '   <p class="property-text">' + params[1] + '</p>';
+    result += '<div class="card-property-line">';
+    result += '   <h4 class="card-property-name">' + params[0] + '</h4>';
+    result += '   <p class="card-p card-property-text">' + params[1] + '</p>';
     result += '</div>';
     return result;
 }
 
 function card_element_description(params, card_data, options) {
     var result = "";
-    result += '<div class="description-line">';
-    result += '   <h4 class="description-name">' + params[0] + '</h4>';
-    result += '   <p class="description-text">' + params[1] + '</p>';
+    result += '<div class="card-description-line">';
+    result += '   <h4 class="card-description-name">' + params[0] + '</h4>';
+    result += '   <p class="card-p card-description-text">' + params[1] + '</p>';
     result += '</div>';
     return result;
 }
 
 function card_element_text(params, card_data, options) {
     var result = "";
-    result += '<div class="description-line">';
-    result += '   <p class="description-text">' + params[0] + '</p>';
+    result += '<div class="card-description-line">';
+    result += '   <p class="card-p card-description-text">' + params[0] + '</p>';
     result += '</div>';
     return result;
 }
@@ -108,12 +108,12 @@ function card_element_text(params, card_data, options) {
 function card_element_section(params, card_data, options) {
     var color = card_data_color_front(card_data, options);
     var section = params[0] || "";
-    return '<h3 style="color:' + color + '">' + section + '</h3>';
+    return '<h3 class="card-section" style="color:' + color + '">' + section + '</h3>';
 }
 
 function card_element_fill(params, card_data, options) {
     var flex = params[0] || "1";
-    return '<div class="fill" style="flex:' + flex + '"></div>';
+    return '<div class="card-fill" style="flex:' + flex + '"></div>';
 }
 
 function card_element_unknown(params, card_data, options) {
@@ -136,7 +136,7 @@ var card_element_generators = {
 
 function card_generate_contents(contents, card_data, options) {
     var result = "";
-    result += '<div class="content-container">';
+    result += '<div class="card-content-container">';
     result += contents.map(function (value) {
         var parts = card_data_split_params(value);
         var element_name = parts[0];
@@ -194,7 +194,7 @@ function card_generate_back(data, options) {
     result += '<div class="card" ' + style_color + '>';
     result += '  <div class="card-back" ' + style_gradient + '>';
     result += '    <div class="card-back-inner">';
-    result += '      <div class="back-icon icon-' + icon + '" ' + style_color + '></div>';
+    result += '      <div class="card-back-icon icon-' + icon + '" ' + style_color + '></div>';
     result += '    </div>';
     result += '  </div>';
     result += '</div>';

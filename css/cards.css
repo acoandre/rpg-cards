@@ -1,8 +1,3 @@
-.bg-color {
-    background-color: #600a15;
-    color: white;
-}
-
 .card {
     width:66mm;
     min-width:66mm;
@@ -16,7 +11,7 @@
     font-size: 8pt;
 }
 
-.content-container {
+.card-content-container {
     padding:2mm;
     padding-top:1mm;
     border-radius: 2mm;
@@ -50,7 +45,7 @@
     align-items: center;
 }
 
-.back-icon {
+.card-back-icon {
     width: 30mm;
     height: 30mm;
     border: 4mm solid;
@@ -60,7 +55,7 @@
     background-size: contain;
 }
 
-.title-icon {
+.card-title-icon {
     width: 12mm;
     height: 12mm;
     background-repeat: no-repeat;
@@ -68,7 +63,7 @@
     background-color: inherit;
     border-color: inherit;
 }
-.title-icon-container {
+.card-title-icon-container {
     position: absolute;
     right: -1mm;
     top: -1mm;
@@ -78,7 +73,7 @@
     border-color: inherit;
 }
 
-.title-inlineicon {
+.card-title-inlineicon {
     width: 7mm;
     height: 7mm;
     background-repeat: no-repeat;
@@ -86,7 +81,7 @@
     background-color: inherit;
     border-color: inherit;
 }
-.title-inlineicon-container {
+.card-title-inlineicon-container {
     position: absolute;
     right: -1mm;
     top: -1mm;
@@ -96,7 +91,7 @@
     border-color: inherit;
 }
 
-.title {
+.card-title {
     height: 8mm;
     padding-left: 2mm;
     font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
@@ -105,24 +100,24 @@
     background-color: inherit;
     color: white;
 }
-.title-big {
+.card-title-big {
     font-size: 6mm;
     line-height: 6mm;
 }
-.title-normal {
+.card-title-normal {
     font-size: 5mm;
     line-height: 6mm;
 }
-.title-small {
+.card-title-small {
     font-size: 4mm;
     line-height: 6.5mm;
 }
-.title-tiny {
+.card-title-tiny {
     font-size: 3.5mm;
     line-height: 6.75mm;
 }
 
-.subtitle {
+.card-subtitle {
     height: 18px;
     line-height: 18px;
     margin-bottom: 1mm;
@@ -131,19 +126,19 @@
     font-style: italic;
 }
 
-.property-line {
+.card-property-line {
     text-indent: -1em;
     margin-left: 1em;
 }
 
-.property-name {
+.card-property-name {
     display: inline;
 }
-.property-text {
+.card-property-text {
     display: inline;
 }
 
-h3 {
+.card-section {
     border-bottom: 1px solid;
     font-size: 10pt;
     font-variant: small-caps;
@@ -154,24 +149,24 @@ h3 {
     border-color: inherit;
 }
 
-p {
+.card-p {
     margin-top: 0.0em;
     margin-bottom: 0.5em;
 }
 
-.fill {flex:1;}
+.card-fill {flex:1;}
 
-.description-line {
+.card-description-line {
     margin-bottom: 0.5em;
 }
-.description-name {
+.card-description-name {
     display: inline;
 }
-.description-text {
+.card-description-text {
     display: inline;
 }
 
-.ruler {
+.card-ruler {
     width: 100%;
     height: 1.0mm;
     margin-top: 0.5em;
