@@ -51,6 +51,12 @@ function ui_add_new_card() {
     ui_update_card_list();
 }
 
+function ui_delete_card() {
+    var selected_card = parseInt($("#selected_card").val(), 10);
+    card_data.splice(selected_card, 1);
+    ui_update_card_list();
+}
+
 function ui_update_card_list() {
     $("#total_card_count").text("Deck contains " + card_data.length + " cards.");
 
@@ -84,7 +90,8 @@ $(document).ready(function () {
     $("#file-load").change(ui_load_files);
     $("#button-load-sample").click(ui_load_sample);
     $("#button-save").click(ui_save_file);
-
+    $("#button-add-card").click(ui_add_new_card);
+    $("#button-delete-card").click(ui_delete_card);
     ui_update_card_list();
 });
 
