@@ -18,6 +18,11 @@ page[size="A4"] {
     page-break-after: always;
 }
 
+#output-frame {
+    border: 0;
+    width: 100%;
+}
+
 @media print {
   body, page[size="A4"] {
     margin: 0;

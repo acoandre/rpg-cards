@@ -1,52 +1,125 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>D&D cards</title>
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="css/page.css">
-    <link rel="stylesheet" type="text/css" href="css/cards.css">
-    <link rel="stylesheet" type="text/css" href="css/icons.css">
-    <link rel="stylesheet" type="text/css" href="css/custom-icons.css">
+    <title>RPG cards</title>
+    <!-- Library: jQuery -->
+    <script type="text/javascript" src="lib/jquery/jquery.min.js" charset="utf-8"></script>
+    <!-- Library: Bootstrap -->
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-theme.min.css" />
+    <!-- Library: Color picker -->
+    <link href="lib/colorpicker/css/bootstrap-colorselector.css" rel="stylesheet" />
+    <script type="text/javascript" src="lib/colorpicker/js/bootstrap-colorselector.js" charset="utf-8"></script>
     <!-- Data -->
     <script type="text/javascript" src="data/card_data.js"></script>
     <script type="text/javascript" src="data/card_data_example.js"></script>
     <!-- Javascript -->
     <script type="text/javascript" defer src="js/cards.js"></script>
-    <script type="text/javascript" defer src="js/control.js"></script>
-    <!-- Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Lora:700' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" defer src="js/ui.js"></script>
+    <!-- CSS -->
+    <link href="css/ui.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
-        <h1>Disclaimer</h1>
-        <p>
-            All material related to <a href="http://dnd.wizards.com/">Dungeons and Dragons</a> 5th edition is copyright by <a href="http://company.wizards.com/">Wizards of the Coast</a>.
-            This site uses information freely available from their basic rules that can be found <a href="http://dnd.wizards.com/articles/features/basicrules?x=dnd/basicrules">here</a>.
-            This probably does not mean you can freely distribute any material derived from there -
-            if you are Wizards of the Coast and have concerns issues with this project, contact me <a href="mailto:robin@dbservice.com">here</a>.
-        </p>
-        <p>
-            All icons are from <a href="game-icons.net">game-icons.net</a>,
-            an awesome project providing free icons for games.
-            Parts of the CSS are copied from <a href="http://valloric.github.io/statblock5e/">statblock5e</a>,
-            a project that tries to re-create pixel-precise monster stat blocks from the monster manual.
-        </p>
-        <p>
-            Click on the button below to transform the huge wall of text at the bottom into beautiful(?) spell and item cards.
-            The cards are generated via Javascript in HTML, the card layout is such that 3x3 cards fill out an A4 page.
-            In theory, you should be able to print the whole page (double-sided printing, flip on long edge) and get double-sided cards.
-            However, I am no CSS expert, so the layout might be a bit off.
-        </p>
-        <p>
-            It should be reasonably simple to understand the JSON format I have used from the below examples, so that you can design your own cards.
-            Just don't forget to save your JSON file externally.
-            You can download the whole project for offline use <a href="cards.zip">here</a>
-            (note that it uses <a href="https://www.google.com/fonts">google fonts</a>, so unless you are online, the fonts will be different).
-        </p>
-        <button type="button" class="input-button">Generate</button>
-        <textarea rows="40" cols="120" class="input-data">
-            
-        </textarea>
+        <h1 class="page-header">RPG card generator</h1>
+        <div class="row">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong>Experimental user interface!</strong>
+                This user interface is experimental and largely non-functional.
+                The only thing that works right now is the "generate cards" button.
+            </div>
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong>Warning!</strong>
+                Some RPG systems are protected by copyright.
+                Even if some spell/item data is freely available, it does not mean you may redistribute cards containing such data.
+            </div>
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                If you need help on how to use this tool, go visit <a href="http://crobi.github.io/rpg-cards/" class="alert-link">http://crobi.github.io/rpg-cards/</a>.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h3>Global</h3>
+                <form role="form">
+                    <div class="form-group">
+                        <label for="default_color" class="color-label">Default color</label>
+                        <select id="default_color" class="form-control"><option value="black" data-color="black">black</option><option value="navy" data-color="navy">navy</option><option value="darkblue" data-color="darkblue">darkblue</option><option value="mediumblue" data-color="mediumblue">mediumblue</option><option value="blue" data-color="blue">blue</option><option value="darkgreen" data-color="darkgreen">darkgreen</option><option value="green" data-color="green">green</option><option value="teal" data-color="teal">teal</option><option value="darkcyan" data-color="darkcyan">darkcyan</option><option value="deepskyblue" data-color="deepskyblue">deepskyblue</option><option value="darkturquoise" data-color="darkturquoise">darkturquoise</option><option value="mediumspringgreen" data-color="mediumspringgreen">mediumspringgreen</option><option value="lime" data-color="lime">lime</option><option value="springgreen" data-color="springgreen">springgreen</option><option value="aqua" data-color="aqua">aqua</option><option value="cyan" data-color="cyan">cyan</option><option value="midnightblue" data-color="midnightblue">midnightblue</option><option value="dodgerblue" data-color="dodgerblue">dodgerblue</option><option value="lightseagreen" data-color="lightseagreen">lightseagreen</option><option value="forestgreen" data-color="forestgreen">forestgreen</option><option value="seagreen" data-color="seagreen">seagreen</option><option value="darkslategray" data-color="darkslategray">darkslategray</option><option value="limegreen" data-color="limegreen">limegreen</option><option value="mediumseagreen" data-color="mediumseagreen">mediumseagreen</option><option value="turquoise" data-color="turquoise">turquoise</option><option value="royalblue" data-color="royalblue">royalblue</option><option value="steelblue" data-color="steelblue">steelblue</option><option value="darkslateblue" data-color="darkslateblue">darkslateblue</option><option value="mediumturquoise" data-color="mediumturquoise">mediumturquoise</option><option value="indigo" data-color="indigo">indigo</option><option value="darkolivegreen" data-color="darkolivegreen">darkolivegreen</option><option value="cadetblue" data-color="cadetblue">cadetblue</option><option value="cornflowerblue" data-color="cornflowerblue">cornflowerblue</option><option value="mediumaquamarine" data-color="mediumaquamarine">mediumaquamarine</option><option value="dimgray" data-color="dimgray">dimgray</option><option value="slateblue" data-color="slateblue">slateblue</option><option value="olivedrab" data-color="olivedrab">olivedrab</option><option value="slategray" data-color="slategray">slategray</option><option value="lightslategray" data-color="lightslategray">lightslategray</option><option value="mediumslateblue" data-color="mediumslateblue">mediumslateblue</option><option value="lawngreen" data-color="lawngreen">lawngreen</option><option value="chartreuse" data-color="chartreuse">chartreuse</option><option value="aquamarine" data-color="aquamarine">aquamarine</option><option value="maroon" data-color="maroon">maroon</option><option value="purple" data-color="purple">purple</option><option value="olive" data-color="olive">olive</option><option value="gray" data-color="gray">gray</option><option value="skyblue" data-color="skyblue">skyblue</option><option value="lightskyblue" data-color="lightskyblue">lightskyblue</option><option value="blueviolet" data-color="blueviolet">blueviolet</option><option value="darkred" data-color="darkred">darkred</option><option value="darkmagenta" data-color="darkmagenta">darkmagenta</option><option value="saddlebrown" data-color="saddlebrown">saddlebrown</option><option value="darkseagreen" data-color="darkseagreen">darkseagreen</option><option value="lightgreen" data-color="lightgreen">lightgreen</option><option value="mediumpurple" data-color="mediumpurple">mediumpurple</option><option value="darkviolet" data-color="darkviolet">darkviolet</option><option value="palegreen" data-color="palegreen">palegreen</option><option value="darkorchid" data-color="darkorchid">darkorchid</option><option value="yellowgreen" data-color="yellowgreen">yellowgreen</option><option value="sienna" data-color="sienna">sienna</option><option value="brown" data-color="brown">brown</option><option value="darkgray" data-color="darkgray">darkgray</option><option value="lightblue" data-color="lightblue">lightblue</option><option value="greenyellow" data-color="greenyellow">greenyellow</option><option value="paleturquoise" data-color="paleturquoise">paleturquoise</option><option value="lightsteelblue" data-color="lightsteelblue">lightsteelblue</option><option value="powderblue" data-color="powderblue">powderblue</option><option value="firebrick" data-color="firebrick">firebrick</option><option value="darkgoldenrod" data-color="darkgoldenrod">darkgoldenrod</option><option value="mediumorchid" data-color="mediumorchid">mediumorchid</option><option value="rosybrown" data-color="rosybrown">rosybrown</option><option value="darkkhaki" data-color="darkkhaki">darkkhaki</option><option value="silver" data-color="silver">silver</option><option value="mediumvioletred" data-color="mediumvioletred">mediumvioletred</option><option value="indianred" data-color="indianred">indianred</option><option value="peru" data-color="peru">peru</option><option value="chocolate" data-color="chocolate">chocolate</option><option value="tan" data-color="tan">tan</option><option value="lightgray" data-color="lightgray">lightgray</option><option value="thistle" data-color="thistle">thistle</option><option value="orchid" data-color="orchid">orchid</option><option value="goldenrod" data-color="goldenrod">goldenrod</option><option value="palevioletred" data-color="palevioletred">palevioletred</option><option value="crimson" data-color="crimson">crimson</option><option value="gainsboro" data-color="gainsboro">gainsboro</option><option value="plum" data-color="plum">plum</option><option value="burlywood" data-color="burlywood">burlywood</option><option value="lightcyan" data-color="lightcyan">lightcyan</option><option value="lavender" data-color="lavender">lavender</option><option value="darksalmon" data-color="darksalmon">darksalmon</option><option value="violet" data-color="violet">violet</option><option value="palegoldenrod" data-color="palegoldenrod">palegoldenrod</option><option value="lightcoral" data-color="lightcoral">lightcoral</option><option value="khaki" data-color="khaki">khaki</option><option value="aliceblue" data-color="aliceblue">aliceblue</option><option value="honeydew" data-color="honeydew">honeydew</option><option value="azure" data-color="azure">azure</option><option value="sandybrown" data-color="sandybrown">sandybrown</option><option value="wheat" data-color="wheat">wheat</option><option value="beige" data-color="beige">beige</option><option value="whitesmoke" data-color="whitesmoke">whitesmoke</option><option value="mintcream" data-color="mintcream">mintcream</option><option value="ghostwhite" data-color="ghostwhite">ghostwhite</option><option value="salmon" data-color="salmon">salmon</option><option value="antiquewhite" data-color="antiquewhite">antiquewhite</option><option value="linen" data-color="linen">linen</option><option value="lightgoldenrodyellow" data-color="lightgoldenrodyellow">lightgoldenrodyellow</option><option value="oldlace" data-color="oldlace">oldlace</option><option value="red" data-color="red">red</option><option value="fuchsia" data-color="fuchsia">fuchsia</option><option value="magenta" data-color="magenta">magenta</option><option value="deeppink" data-color="deeppink">deeppink</option><option value="orangered" data-color="orangered">orangered</option><option value="tomato" data-color="tomato">tomato</option><option value="hotpink" data-color="hotpink">hotpink</option><option value="coral" data-color="coral">coral</option><option value="darkorange" data-color="darkorange">darkorange</option><option value="lightsalmon" data-color="lightsalmon">lightsalmon</option><option value="orange" data-color="orange">orange</option><option value="lightpink" data-color="lightpink">lightpink</option><option value="pink" data-color="pink">pink</option><option value="gold" data-color="gold">gold</option><option value="peachpuff" data-color="peachpuff">peachpuff</option><option value="navajowhite" data-color="navajowhite">navajowhite</option><option value="moccasin" data-color="moccasin">moccasin</option><option value="bisque" data-color="bisque">bisque</option><option value="mistyrose" data-color="mistyrose">mistyrose</option><option value="blanchedalmond" data-color="blanchedalmond">blanchedalmond</option><option value="papayawhip" data-color="papayawhip">papayawhip</option><option value="lavenderblush" data-color="lavenderblush">lavenderblush</option><option value="seashell" data-color="seashell">seashell</option><option value="cornsilk" data-color="cornsilk">cornsilk</option><option value="lemonchiffon" data-color="lemonchiffon">lemonchiffon</option><option value="floralwhite" data-color="floralwhite">floralwhite</option><option value="snow" data-color="snow">snow</option><option value="yellow" data-color="yellow">yellow</option><option value="lightyellow" data-color="lightyellow">lightyellow</option><option value="ivory" data-color="ivory">ivory</option><option value="white" data-color="white">white</option></select>
+                        <script>
+                            $('#default_color').colorselector();
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        <label for="default_icon">Default Icon</label>
+                        <input type="text" id="default_icon" class="form-control" placeholder="Icon name">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" checked> Small front icons
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="default_title_size">Default title size</label>
+                        <select class="form-control" id="default_title_size">
+                            <option value="big">big</option>
+                            <option value="normal" selected>normal</option>
+                            <option value="small">small</option>
+                            <option value="tiny">tiny</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" id="button-load">Load cards from file</button>
+                    <button type="button" class="btn btn-primary btn-block" id="button-save">Save cards</button>
+                    <button type="button" class="btn btn-primary btn-block" id="button-load-sample">Load sample cards</button>
+                    <button type="button" class="btn btn-success btn-block" id="button-generate">Generate cards</button>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <h3>Card list</h3>
+                <form role="form">
+                    <div class="form-group">
+                        <label for="selected_card">Selected card</label>
+                        <select class="form-control" id="selected_card">
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block">Delete selected card</button>
+                    <button type="button" class="btn btn-primary btn-block">Add new card</button>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <h3>Card</h3>
+                <form role="form">
+                    <div class="form-group">
+                        <label for="card_name">Name</label>
+                        <input type="text" id="card_name" class="form-control" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="card_icon">Icon</label>
+                        <input type="text" id="card_icon" class="form-control" placeholder="Icon name">
+                    </div>
+                    <div class="form-group">
+                        <label for="card_color" class="color-label">Color</label>
+                        <select id="card_color" class="form-control"><option value="none" data-color="white">none</option><option value="black" data-color="black" selected>black</option><option value="navy" data-color="navy">navy</option><option value="darkblue" data-color="darkblue">darkblue</option><option value="mediumblue" data-color="mediumblue">mediumblue</option><option value="blue" data-color="blue">blue</option><option value="darkgreen" data-color="darkgreen">darkgreen</option><option value="green" data-color="green">green</option><option value="teal" data-color="teal">teal</option><option value="darkcyan" data-color="darkcyan">darkcyan</option><option value="deepskyblue" data-color="deepskyblue">deepskyblue</option><option value="darkturquoise" data-color="darkturquoise">darkturquoise</option><option value="mediumspringgreen" data-color="mediumspringgreen">mediumspringgreen</option><option value="lime" data-color="lime">lime</option><option value="springgreen" data-color="springgreen">springgreen</option><option value="aqua" data-color="aqua">aqua</option><option value="cyan" data-color="cyan">cyan</option><option value="midnightblue" data-color="midnightblue">midnightblue</option><option value="dodgerblue" data-color="dodgerblue">dodgerblue</option><option value="lightseagreen" data-color="lightseagreen">lightseagreen</option><option value="forestgreen" data-color="forestgreen">forestgreen</option><option value="seagreen" data-color="seagreen">seagreen</option><option value="darkslategray" data-color="darkslategray">darkslategray</option><option value="limegreen" data-color="limegreen">limegreen</option><option value="mediumseagreen" data-color="mediumseagreen">mediumseagreen</option><option value="turquoise" data-color="turquoise">turquoise</option><option value="royalblue" data-color="royalblue">royalblue</option><option value="steelblue" data-color="steelblue">steelblue</option><option value="darkslateblue" data-color="darkslateblue">darkslateblue</option><option value="mediumturquoise" data-color="mediumturquoise">mediumturquoise</option><option value="indigo" data-color="indigo">indigo</option><option value="darkolivegreen" data-color="darkolivegreen">darkolivegreen</option><option value="cadetblue" data-color="cadetblue">cadetblue</option><option value="cornflowerblue" data-color="cornflowerblue">cornflowerblue</option><option value="mediumaquamarine" data-color="mediumaquamarine">mediumaquamarine</option><option value="dimgray" data-color="dimgray">dimgray</option><option value="slateblue" data-color="slateblue">slateblue</option><option value="olivedrab" data-color="olivedrab">olivedrab</option><option value="slategray" data-color="slategray">slategray</option><option value="lightslategray" data-color="lightslategray">lightslategray</option><option value="mediumslateblue" data-color="mediumslateblue">mediumslateblue</option><option value="lawngreen" data-color="lawngreen">lawngreen</option><option value="chartreuse" data-color="chartreuse">chartreuse</option><option value="aquamarine" data-color="aquamarine">aquamarine</option><option value="maroon" data-color="maroon">maroon</option><option value="purple" data-color="purple">purple</option><option value="olive" data-color="olive">olive</option><option value="gray" data-color="gray">gray</option><option value="skyblue" data-color="skyblue">skyblue</option><option value="lightskyblue" data-color="lightskyblue">lightskyblue</option><option value="blueviolet" data-color="blueviolet">blueviolet</option><option value="darkred" data-color="darkred">darkred</option><option value="darkmagenta" data-color="darkmagenta">darkmagenta</option><option value="saddlebrown" data-color="saddlebrown">saddlebrown</option><option value="darkseagreen" data-color="darkseagreen">darkseagreen</option><option value="lightgreen" data-color="lightgreen">lightgreen</option><option value="mediumpurple" data-color="mediumpurple">mediumpurple</option><option value="darkviolet" data-color="darkviolet">darkviolet</option><option value="palegreen" data-color="palegreen">palegreen</option><option value="darkorchid" data-color="darkorchid">darkorchid</option><option value="yellowgreen" data-color="yellowgreen">yellowgreen</option><option value="sienna" data-color="sienna">sienna</option><option value="brown" data-color="brown">brown</option><option value="darkgray" data-color="darkgray">darkgray</option><option value="lightblue" data-color="lightblue">lightblue</option><option value="greenyellow" data-color="greenyellow">greenyellow</option><option value="paleturquoise" data-color="paleturquoise">paleturquoise</option><option value="lightsteelblue" data-color="lightsteelblue">lightsteelblue</option><option value="powderblue" data-color="powderblue">powderblue</option><option value="firebrick" data-color="firebrick">firebrick</option><option value="darkgoldenrod" data-color="darkgoldenrod">darkgoldenrod</option><option value="mediumorchid" data-color="mediumorchid">mediumorchid</option><option value="rosybrown" data-color="rosybrown">rosybrown</option><option value="darkkhaki" data-color="darkkhaki">darkkhaki</option><option value="silver" data-color="silver">silver</option><option value="mediumvioletred" data-color="mediumvioletred">mediumvioletred</option><option value="indianred" data-color="indianred">indianred</option><option value="peru" data-color="peru">peru</option><option value="chocolate" data-color="chocolate">chocolate</option><option value="tan" data-color="tan">tan</option><option value="lightgray" data-color="lightgray">lightgray</option><option value="thistle" data-color="thistle">thistle</option><option value="orchid" data-color="orchid">orchid</option><option value="goldenrod" data-color="goldenrod">goldenrod</option><option value="palevioletred" data-color="palevioletred">palevioletred</option><option value="crimson" data-color="crimson">crimson</option><option value="gainsboro" data-color="gainsboro">gainsboro</option><option value="plum" data-color="plum">plum</option><option value="burlywood" data-color="burlywood">burlywood</option><option value="lightcyan" data-color="lightcyan">lightcyan</option><option value="lavender" data-color="lavender">lavender</option><option value="darksalmon" data-color="darksalmon">darksalmon</option><option value="violet" data-color="violet">violet</option><option value="palegoldenrod" data-color="palegoldenrod">palegoldenrod</option><option value="lightcoral" data-color="lightcoral">lightcoral</option><option value="khaki" data-color="khaki">khaki</option><option value="aliceblue" data-color="aliceblue">aliceblue</option><option value="honeydew" data-color="honeydew">honeydew</option><option value="azure" data-color="azure">azure</option><option value="sandybrown" data-color="sandybrown">sandybrown</option><option value="wheat" data-color="wheat">wheat</option><option value="beige" data-color="beige">beige</option><option value="whitesmoke" data-color="whitesmoke">whitesmoke</option><option value="mintcream" data-color="mintcream">mintcream</option><option value="ghostwhite" data-color="ghostwhite">ghostwhite</option><option value="salmon" data-color="salmon">salmon</option><option value="antiquewhite" data-color="antiquewhite">antiquewhite</option><option value="linen" data-color="linen">linen</option><option value="lightgoldenrodyellow" data-color="lightgoldenrodyellow">lightgoldenrodyellow</option><option value="oldlace" data-color="oldlace">oldlace</option><option value="red" data-color="red">red</option><option value="fuchsia" data-color="fuchsia">fuchsia</option><option value="magenta" data-color="magenta">magenta</option><option value="deeppink" data-color="deeppink">deeppink</option><option value="orangered" data-color="orangered">orangered</option><option value="tomato" data-color="tomato">tomato</option><option value="hotpink" data-color="hotpink">hotpink</option><option value="coral" data-color="coral">coral</option><option value="darkorange" data-color="darkorange">darkorange</option><option value="lightsalmon" data-color="lightsalmon">lightsalmon</option><option value="orange" data-color="orange">orange</option><option value="lightpink" data-color="lightpink">lightpink</option><option value="pink" data-color="pink">pink</option><option value="gold" data-color="gold">gold</option><option value="peachpuff" data-color="peachpuff">peachpuff</option><option value="navajowhite" data-color="navajowhite">navajowhite</option><option value="moccasin" data-color="moccasin">moccasin</option><option value="bisque" data-color="bisque">bisque</option><option value="mistyrose" data-color="mistyrose">mistyrose</option><option value="blanchedalmond" data-color="blanchedalmond">blanchedalmond</option><option value="papayawhip" data-color="papayawhip">papayawhip</option><option value="lavenderblush" data-color="lavenderblush">lavenderblush</option><option value="seashell" data-color="seashell">seashell</option><option value="cornsilk" data-color="cornsilk">cornsilk</option><option value="lemonchiffon" data-color="lemonchiffon">lemonchiffon</option><option value="floralwhite" data-color="floralwhite">floralwhite</option><option value="snow" data-color="snow">snow</option><option value="yellow" data-color="yellow">yellow</option><option value="lightyellow" data-color="lightyellow">lightyellow</option><option value="ivory" data-color="ivory">ivory</option><option value="white" data-color="white">white</option></select>
+                        <script>
+                            $('#card_color').colorselector();
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        <label for="card_contents">Contents</label>
+                        <textarea class="form-control" rows="10" id="card_contents">
+subtitle | Subtitle text
+rule
+property | Name | Text
+                        </textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <h3>Preview</h3>
+            </div>
+        </div>
     </div>
 </body>
 </html>

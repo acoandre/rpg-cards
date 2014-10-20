@@ -1,4 +1,4 @@
-var card_data = [
+var card_data_example = [
     {
         "count": 1,
         "color": "maroon",
@@ -130,3 +130,5 @@ var card_data = [
         ]
     }
 ];
+
+card_data = card_data.concat(card_data_example);

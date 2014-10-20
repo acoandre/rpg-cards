@@ -21,6 +21,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    font-size: inherit;
 }
 
 .card-back {
@@ -129,10 +130,13 @@
 .card-property-line {
     text-indent: -1em;
     margin-left: 1em;
+    font-size: inherit;
+    color: black;
 }
 
 .card-property-name {
     display: inline;
+    font-size: inherit;
 }
 .card-property-text {
     display: inline;
@@ -152,15 +156,19 @@
 .card-p {
     margin-top: 0.0em;
     margin-bottom: 0.5em;
+    font-size: inherit;
 }
 
 .card-fill {flex:1;}
 
 .card-description-line {
     margin-bottom: 0.5em;
+    font-size: inherit;
+    color: black;
 }
 .card-description-name {
     display: inline;
+    font-size: inherit;
 }
 .card-description-text {
     display: inline;
