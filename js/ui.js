@@ -236,6 +236,7 @@ function ui_change_card_contents() {
 
 $(document).ready(function () {
     ui_setup_color_selector();
+    $('.icon-list').typeahead({source:icon_names});
 
     $("#button-generate").click(ui_generate);
     $("#button-load").click(function () { $("#file-load").click(); });
