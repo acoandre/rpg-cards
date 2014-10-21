@@ -132,6 +132,7 @@ var card_element_generators = {
     subtitle: card_element_subtitle,
     property: card_element_property,
     rule: card_element_ruler,
+    ruler: card_element_ruler,
     description: card_element_description,
     text: card_element_text,
     fill: card_element_fill,
@@ -152,7 +153,7 @@ function card_generate_contents(contents, card_data, options) {
         var element_generator = card_element_generators[element_name];
         if (element_generator) {
             return element_generator(element_params, card_data, options);
-        } else {
+        } else if (element_name.length > 0) {
             return card_element_unknown(element_params, card_data, options);
         }
     }).join("\n");
