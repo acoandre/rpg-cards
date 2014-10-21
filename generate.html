@@ -39,8 +39,8 @@
                 Even if some spell/item data is freely available, it does not mean you may redistribute cards containing such data.
             </div>
         </div>
-        <div class="row row-eq-height">
-            <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-12 col-lg-3">
                 <h3>Menu</h3>
                 <form role="form">
                     <span class="help-block" id="total_card_count">Deck contains 0 cards.</span>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="default_icon">Default Icon</label>                    
+                        <label for="default_icon">Default Icon</label>
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <button class="btn btn-default icon-select-button" type="button">Select</button>
@@ -87,43 +87,59 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-12 col-lg-5">
                 <h3>Card</h3>
-                <form role="form">
+                <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="selected_card">Selected card</label>
-                        <select class="form-control" id="selected_card"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="card_name">Name</label>
-                        <input type="text" id="card_title" class="form-control" placeholder="Title" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="card_icon">Icon</label>
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default icon-select-button" type="button">Select</button>
-                            </span>
-                            <input type="text" id="card_icon" class="form-control" placeholder="Icon name" readonly>
-                        </div>                 
-                    </div>
-                    <div class="form-group">
-                        <label for="card_color" class="color-label">Color</label>
-                        <div class="input-group color-input-group">
-                            <select id="card_color_selector" class="colorselector-data"></select>
-                            <input type="text" id="card_color" class="form-control" placeholder="Card color" readonly>
+                        <label for="selected_card" class="col-sm-2 control-label">Selected card</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="selected_card"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="card_contents">Contents</label>
-                        <textarea class="form-control" rows="10" id="card_contents" readonly wrap="off">
-                        </textarea>
+                        <label for="card_contents" class="col-sm-2 control-label"></label>
+                        <div class="col-sm-5">
+                            <button type="button" class="btn btn-danger btn-block" id="button-delete-card">Delete selected card</button>
+                        </div>
+                        <div class="col-sm-5">
+                            <button type="button" class="btn btn-primary btn-block" id="button-add-card">Add new card</button>
+                        </div>
                     </div>
-                    <button type="button" class="btn btn-primary btn-block" id="button-delete-card">Delete selected card</button>
-                    <button type="button" class="btn btn-primary btn-block" id="button-add-card">Add new card</button>
+                    <div class="form-group">
+                        <label for="card_name" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="card_title" class="form-control" placeholder="Title" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="card_icon" class="col-sm-2 control-label">Icon</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default icon-select-button" type="button">Select</button>
+                                </span>
+                                <input type="text" id="card_icon" class="form-control" placeholder="Icon name" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="card_color" class="col-sm-2 control-label">Color</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <select id="card_color_selector" class="colorselector-data"></select>
+                                <input type="text" id="card_color" class="form-control" placeholder="Card color" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="card_contents" class="col-sm-2 control-label">Contents</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="14" id="card_contents" readonly wrap="off"></textarea>
+                        </div>
+                    </div>
                 </form>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-12 col-lg-4">
                 <h3>Preview</h3>
                 <div id="preview-container">
                 </div>

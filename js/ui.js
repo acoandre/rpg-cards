@@ -4,7 +4,7 @@ var card_options = card_default_options();
 
 function ui_generate() {
     // Generate output HTML
-    var card_html = card_pages_generate_html(card_data);
+    var card_html = card_pages_generate_html(card_data, card_options);
 
     // Open a new window for the output
     // Use a separate window to avoid CSS conflicts

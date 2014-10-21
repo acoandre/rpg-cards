@@ -144,8 +144,10 @@ var css_color_names = [
 
 var card_colors = {
     "": "",
-    "arcane": "#bb3d2f",
-    "cleric": "#ae7b00",
-    "rogue": "#802161",
-    "item": "dimgray",
+    "maroon": "maroon",
+    "darkgoldenrod": "darkgoldenrod",
+    "indigo": "indigo",
+    "royalblue": "royalblue",
+    "dimgray": "dimgray",
+    "black": "black"
 }
