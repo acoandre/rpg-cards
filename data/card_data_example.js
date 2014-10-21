@@ -3,8 +3,8 @@ var card_data_example = [
         "count": 1,
         "color": "maroon",
         "title": "Burning Hands",
-        "icon": "custom-spell-1",
-        "icon_back": "custom-class-arcane",
+        "icon": "white-book-1",
+        "icon_back": "robe",
         "contents": [
             "subtitle | 1st level evocation",
             "rule",
@@ -14,7 +14,7 @@ var card_data_example = [
             "rule",
             "fill | 2",
             "text | Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes <b>3d6 fire damage</b> on a failed save, or half as much damage on a successful one.",
-            "text | The fire ignites any flammable objects in the area that aren’t being worn or carried.",
+            "text | The fire ignites any flammable objects in the area that aren't being worn or carried.",
             "fill | 3",
             "section | At higher levels",
             "text | +1d6 damage for each slot above 1st"
@@ -24,8 +24,8 @@ var card_data_example = [
         "count": 1,
         "color": "indigo",
         "title": "Cunning Action",
-        "icon": "custom-spell",
-        "icon_back": "custom-class-rogue",
+        "icon": "white-book",
+        "icon_back": "cloak-dagger",
         "contents": [
             "subtitle | Rogue feature",
             "rule",
@@ -33,14 +33,14 @@ var card_data_example = [
             "text | You can take a <b>bonus action on each of your turns</b> in combat. This action can be used only to take the <b>Dash, Disengage, or Hide</b> action.",
             "fill | 2",
             "section | Fast hands (Thief 3rd)",
-            "text | You can also use the bonus action to make a Dexterity (<b>Sleight of Hand</b>) check, use your thieves’ tools to <b>disarm a trap</b> or <b>open a lock</b>, or take the <b>Use an Object</b> action.",
+            "text | You can also use the bonus action to make a Dexterity (<b>Sleight of Hand</b>) check, use your thieves' tools to <b>disarm a trap</b> or <b>open a lock</b>, or take the <b>Use an Object</b> action.",
         ]
     },
     {
         "count": 1,
         "color": "dimgray",
         "title": "Full Plate",
-        "icon": "custom-armor-heavy",
+        "icon": "breastplate",
         "contents": [
             "subtitle | Heavy armor (1500gp)",
             "rule",
@@ -58,7 +58,7 @@ var card_data_example = [
         "count": 1,
         "color": "dimgray",
         "title": "Dagger",
-        "icon": "custom-swordarrow",
+        "icon": "mixed-swords",
         "contents": [
             "subtitle | Simple melee weapon (2gp)",
             "rule",
@@ -78,7 +78,7 @@ var card_data_example = [
         "color": "dimgray",
         "title": "Shortsword of Very Long Names",
         "title_size": "tiny",
-        "icon": "custom-swords",
+        "icon": "crossed-swords",
         "contents": [
             "subtitle | Simple melee weapon (10gp)",
             "rule",
@@ -96,7 +96,7 @@ var card_data_example = [
         "count": 1,
         "color": "dimgray",
         "title": "Wand of Magic Missiles",
-        "icon": "custom-wand",
+        "icon": "crystal-wand",
         "contents": [
             "subtitle | Wondrous item",
             "rule",
@@ -116,7 +116,7 @@ var card_data_example = [
         "count": 2,
         "color": "dimgray",
         "title": "Potion of Healing",
-        "icon": "custom-potion",
+        "icon": "drink-me",
         "contents": [
             "subtitle | Potion (50gp)",
             "rule",
