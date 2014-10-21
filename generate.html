@@ -95,13 +95,13 @@
                 <span class="help-block">Use this part to edit individual cards.</span>
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="selected_card" class="col-sm-2 control-label">Selected card</label>
+                        <label for="selected-card" class="col-sm-2 control-label">Selected card</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="selected_card"></select>
+                            <select class="form-control" id="selected-card"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="card_contents" class="col-sm-2 control-label"></label>
+                        <label class="col-sm-2 control-label"></label>
                         <div class="col-sm-5">
                             <button type="button" class="btn btn-danger btn-block" id="button-delete-card">Delete selected card</button>
                         </div>
@@ -110,35 +110,41 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="card_name" class="col-sm-2 control-label">Name</label>
+                        <label for="card-title" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="text" id="card_title" class="form-control" placeholder="Title" readonly>
+                            <input type="text" id="card-title" class="form-control" placeholder="Title">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="card_icon" class="col-sm-2 control-label">Icon</label>
+                        <label for="card-count" class="col-sm-2 control-label">Count</label>
+                        <div class="col-sm-10">
+                            <input type="number" id="card-count" class="form-control" placeholder="Count" data-property="count">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-icon" class="col-sm-2 control-label">Icon</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default icon-select-button" type="button">Select</button>
                                 </span>
-                                <input type="text" id="card_icon" class="form-control" placeholder="Icon name" readonly>
+                                <input type="text" id="card-icon" class="form-control" placeholder="Icon name" data-property="icon">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="card_color" class="col-sm-2 control-label">Color</label>
+                        <label for="card-color" class="col-sm-2 control-label">Color</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <select id="card_color_selector" class="colorselector-data"></select>
-                                <input type="text" id="card_color" class="form-control" placeholder="Card color" readonly>
+                                <input type="text" id="card-color" class="form-control" placeholder="Card color" data-property="color">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="card_contents" class="col-sm-2 control-label">Contents</label>
+                        <label for="card-contents" class="col-sm-2 control-label">Contents</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" rows="14" id="card_contents" readonly wrap="off"></textarea>
+                            <textarea class="form-control" rows="14" id="card-contents" wrap="off"></textarea>
                         </div>
                     </div>
                 </form>

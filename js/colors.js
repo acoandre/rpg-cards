@@ -144,10 +144,15 @@ var css_color_names = [
 
 var card_colors = {
     "": "",
-    "maroon": "maroon",
-    "darkgoldenrod": "darkgoldenrod",
-    "indigo": "indigo",
-    "royalblue": "royalblue",
     "dimgray": "dimgray",
-    "black": "black"
+    "black": "black",
+    "darkgoldenrod": "darkgoldenrod",
+    "saddlebrown": "saddlebrown",
+    "indianred": "indianred",
+    "maroon": "maroon",
+    "indigo": "indigo",
+    "darkblue": "darkblue",
+    "royalblue": "royalblue",
+    "darkgreen": "darkgreen",
+    "#666633": "#666633"
 }

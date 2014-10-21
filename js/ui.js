@@ -50,10 +50,20 @@ function ui_add_cards(data) {
 function ui_add_new_card() {
     card_data.push(card_default_data());
     ui_update_card_list();
+    ui_select_card_by_index(card_data.length - 1);
+}
+
+function ui_select_card_by_index(index) {
+    $("#selected-card").val(index);
+    ui_update_selected_card();
 }
 
 function ui_selected_card_index() {
-    return parseInt($("#selected_card").val(), 10);
+    return parseInt($("#selected-card").val(), 10);
+}
+
+function ui_selected_card() {
+    return card_data[ui_selected_card_index()];
 }
 
 function ui_delete_card() {
@@ -64,10 +74,10 @@ function ui_delete_card() {
 function ui_update_card_list() {
     $("#total_card_count").text("Deck contains " + card_data.length + " cards.");
 
-    $('#selected_card').empty();
+    $('#selected-card').empty();
     for (var i = 0; i < card_data.length; ++i) {
         var card = card_data[i];
-        $('#selected_card')
+        $('#selected-card')
             .append($("<option></option>")
             .attr("value", i)
             .text(card.title));
@@ -91,22 +101,27 @@ function ui_save_file() {
 }
 
 function ui_update_selected_card() {
-    var card = card_data[ui_selected_card_index()];
+    var card = ui_selected_card();
     if (card) {
-        $("#card_title").val(card.title);
-        $("#card_icon").val(card.icon);
-        $("#card_contents").val(card.contents.join("\n"));
-        $("#card_color").val(card.color);
-
-        ui_render_card(card);
+        $("#card-title").val(card.title);
+        $("#card-count").val(card.count);
+        $("#card-icon").val(card.icon);
+        $("#card-contents").val(card.contents.join("\n"));
+        $("#card-color").val(card.color);
+        ui_update_card_color_selector(card.color);
     }
+
+    ui_render_selected_card();
 }
 
-function ui_render_card(card) {
-    var front = card_generate_front(card, card_options);
-    var back = card_generate_back(card, card_options);
+function ui_render_selected_card() {
+    var card = ui_selected_card();
     $('#preview-container').empty();
-    $('#preview-container').html(front + "\n" + back);
+    if (card) {
+        var front = card_generate_front(card, card_options);
+        var back = card_generate_back(card, card_options);
+        $('#preview-container').html(front + "\n" + back);
+    }
 }
 
 function ui_open_help() {
@@ -118,6 +133,7 @@ function ui_select_icon() {
 }
 
 function ui_setup_color_selector() {
+    // Insert colors
     $.each(card_colors, function (name, val) {
         $(".colorselector-data")
             .append($("<option></option>")
@@ -126,6 +142,7 @@ function ui_setup_color_selector() {
             .text(name));
     });
     
+    // Callbacks for when the user picks a color
     $('#default_color_selector').colorselector({
         callback: function (value, color, title) {
             $("#default_color").val(title);
@@ -134,11 +151,12 @@ function ui_setup_color_selector() {
     });
     $('#card_color_selector').colorselector({
         callback: function (value, color, title) {
-            $("#card_color").val(title);
+            $("#card-color").val(title);
+            ui_set_card_color(value);
         }
     });
-    $(".dropdown-colorselector").addClass("input-group-addon color-input-addon");
 
+    // Callbacks for when the user enters a color as a text
     $("#default_color").change(function (e) {
         var color = $("#default_color").val();
         if ($("#default_color_selector option[value='" + color + "']").length > 0) {
@@ -149,11 +167,71 @@ function ui_setup_color_selector() {
         }
         ui_set_default_color(color);
     });
+
+    // Styling
+    $(".dropdown-colorselector").addClass("input-group-addon color-input-addon");
 }
 
 function ui_set_default_color(color) {
     card_options.default_color = color;
 }
+
+function ui_change_card_title() {
+    var title = $("#card-title").val();
+    var card = ui_selected_card();
+    if (card) {
+        card.title = title;
+        $("#selected-card option:selected").text(title);
+        ui_render_selected_card();
+    }
+}
+
+function ui_change_card_property() {
+    var property = $(this).attr("data-property");
+    var value = $(this).val();
+    var card = ui_selected_card();
+    if (card) {
+        card[property] = value;
+        ui_render_selected_card();
+    }
+}
+
+function ui_set_card_color(value) {
+    var card = ui_selected_card();
+    if (card) {
+        card.color = value;
+        ui_render_selected_card();
+    }
+}
+
+function ui_update_card_color_selector(color) {
+    if ($("#card_color_selector option[value='" + color + "']").length > 0) {
+        // Update the color selector to the entered value
+        $("#card_color_selector").colorselector("setValue", color);
+    } else {
+        // Unknown color - select a neutral color and reset the text value
+        $("#card_color_selector").colorselector("setValue", "");
+        $("#card-color").val(color);
+    }
+}
+
+function ui_change_card_color() {
+    var color = $(this).val();
+
+    ui_update_card_color_selector(color);
+    ui_set_card_color(color);
+}
+
+function ui_change_card_contents() {
+    var value = $(this).val();
+
+    var card = ui_selected_card();
+    if (card) {
+        card.contents = value.split("\n");
+        ui_render_selected_card();
+    }
+}
+
 
 $(document).ready(function () {
     ui_setup_color_selector();
@@ -166,7 +244,13 @@ $(document).ready(function () {
     $("#button-add-card").click(ui_add_new_card);
     $("#button-delete-card").click(ui_delete_card);
     $("#button-help").click(ui_open_help);
-    $("#selected_card").change(ui_update_selected_card);
+    $("#selected-card").change(ui_update_selected_card);
+
+    $("#card-title").change(ui_change_card_title);
+    $("#card-icon").change(ui_change_card_property);
+    $("#card-count").change(ui_change_card_property);
+    $("#card-color").change(ui_change_card_color);
+    $("#card-contents").change(ui_change_card_contents);
 
     $(".icon-select-button").click(ui_select_icon);
     
