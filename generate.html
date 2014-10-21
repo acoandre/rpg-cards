@@ -128,7 +128,18 @@
                                 <span class="input-group-btn">
                                     <button class="btn btn-default icon-select-button" type="button">Select</button>
                                 </span>
-                                <input type="text" id="card-icon" class="form-control" placeholder="Icon name" data-property="icon">
+                                <input type="text" id="card-icon" class="form-control" placeholder="Icon name (default icon if empty)" data-property="icon">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-icon-back" class="col-sm-2 control-label">Back icon</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default icon-select-button" type="button">Select</button>
+                                </span>
+                                <input type="text" id="card-icon-back" class="form-control" placeholder="Icon name (same as front if empty)" data-property="icon_back">
                             </div>
                         </div>
                     </div>
@@ -137,7 +148,7 @@
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <select id="card_color_selector" class="colorselector-data"></select>
-                                <input type="text" id="card-color" class="form-control" placeholder="Card color" data-property="color">
+                                <input type="text" id="card-color" class="form-control" placeholder="Card color (default color if empty)" data-property="color">
                             </div>
                         </div>
                     </div>

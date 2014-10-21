@@ -106,6 +106,7 @@ function ui_update_selected_card() {
         $("#card-title").val(card.title);
         $("#card-count").val(card.count);
         $("#card-icon").val(card.icon);
+        $("#card-icon-back").val(card.icon_back);
         $("#card-contents").val(card.contents.join("\n"));
         $("#card-color").val(card.color);
         ui_update_card_color_selector(card.color);
@@ -249,6 +250,7 @@ $(document).ready(function () {
     $("#card-title").change(ui_change_card_title);
     $("#card-icon").change(ui_change_card_property);
     $("#card-count").change(ui_change_card_property);
+    $("#card-icon-back").change(ui_change_card_property);
     $("#card-color").change(ui_change_card_color);
     $("#card-contents").change(ui_change_card_contents);
 
