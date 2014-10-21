@@ -117,8 +117,46 @@ function ui_select_icon() {
     window.open("http://game-icons.net/", "_blank");
 }
 
-$(document).ready(function () {
+function ui_setup_color_selector() {
+    $.each(card_colors, function (name, val) {
+        $(".colorselector-data")
+            .append($("<option></option>")
+            .attr("value", name)
+            .attr("data-color", val)
+            .text(name));
+    });
+    
+    $('#default_color_selector').colorselector({
+        callback: function (value, color, title) {
+            $("#default_color").val(title);
+            ui_set_default_color(title);
+        }
+    });
+    $('#card_color_selector').colorselector({
+        callback: function (value, color, title) {
+            $("#card_color").val(title);
+        }
+    });
     $(".dropdown-colorselector").addClass("input-group-addon color-input-addon");
+
+    $("#default_color").change(function (e) {
+        var color = $("#default_color").val();
+        if ($("#default_color_selector option[value='" + color + "']").length > 0) {
+            $("#default_color_selector").colorselector("setValue", color);
+        } else {
+            $("#default_color_selector").colorselector("setValue", "");
+            $("#default_color").val(color);
+        }
+        ui_set_default_color(color);
+    });
+}
+
+function ui_set_default_color(color) {
+    card_options.default_color = color;
+}
+
+$(document).ready(function () {
+    ui_setup_color_selector();
 
     $("#button-generate").click(ui_generate);
     $("#button-load").click(function () { $("#file-load").click(); });
