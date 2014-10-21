@@ -84,7 +84,7 @@ function ui_delete_card() {
 }
 
 function ui_update_card_list() {
-    $("#total_card_count").text("Deck contains " + card_data.length + " cards.");
+    $("#total_card_count").text("Deck contains " + card_data.length + " unique cards.");
 
     $('#selected-card').empty();
     for (var i = 0; i < card_data.length; ++i) {
