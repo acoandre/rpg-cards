@@ -258,6 +258,32 @@ function ui_change_default_icon_size() {
     ui_render_selected_card();
 }
 
+function ui_sort_by_name() {
+    card_data.sort(function (a, b) { return b.title < a.title });
+    ui_update_card_list();
+}
+
+function ui_apply_default_color() {
+    for (var i = 0; i < card_data.length; ++i) {
+        card_data[i].color = card_options.default_color;
+    }
+    ui_render_selected_card();
+}
+
+function ui_apply_default_icon() {
+    for (var i = 0; i < card_data.length; ++i) {
+        card_data[i].icon = card_options.default_icon;
+    }
+    ui_render_selected_card();
+}
+
+function ui_apply_default_icon_back() {
+    for (var i = 0; i < card_data.length; ++i) {
+        card_data[i].icon_back = card_options.default_icon;
+    }
+    ui_render_selected_card();
+}
+
 $(document).ready(function () {
     ui_setup_color_selector();
     $('.icon-list').typeahead({source:icon_names});
@@ -265,12 +291,18 @@ $(document).ready(function () {
     $("#button-generate").click(ui_generate);
     $("#button-load").click(function () { $("#file-load").click(); });
     $("#file-load").change(ui_load_files);
+    $("#button-clear").click(ui_clear_all);
     $("#button-load-sample").click(ui_load_sample);
     $("#button-save").click(ui_save_file);
+    $("#button-sort-name").click(ui_sort_by_name);
     $("#button-add-card").click(ui_add_new_card);
     $("#button-duplicate-card").click(ui_duplicate_card);
     $("#button-delete-card").click(ui_delete_card);
     $("#button-help").click(ui_open_help);
+    $("#button-apply-color").click(ui_apply_default_color);
+    $("#button-apply-icon").click(ui_apply_default_icon);
+    $("#button-apply-icon-back").click(ui_apply_default_icon_back);
+
     $("#selected-card").change(ui_update_selected_card);
 
     $("#card-title").change(ui_change_card_title);

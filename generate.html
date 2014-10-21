@@ -48,16 +48,18 @@
                     <input type="file" id="file-load" name="files[]" multiple class="form-control" style="display:none" />
                     <a href="" id="file-save-link" style="display:none">Hidden download link</a>
                     <button type="button" class="btn btn-info btn-block" id="button-help">Open Help</button>
+                    <button type="button" class="btn btn-danger btn-block" id="button-clear">Delete all cards</button>
                     <button type="button" class="btn btn-primary btn-block" id="button-load-sample">Load sample cards (discards current data)</button>
                     <button type="button" class="btn btn-primary btn-block" id="button-load">Load cards from file</button>
                     <button type="button" class="btn btn-primary btn-block" id="button-save">Save cards to file</button>
+                    <button type="button" class="btn btn-primary btn-block" id="button-sort-name">Sort cards by name</button>
                     <button type="button" class="btn btn-success btn-block" id="button-generate">Generate cards</button>
-                    <span class="help-block">Note: generated cards open in a new tab or window.</span>
+                    <span class="help-block">Generated cards open in a new tab or window.</span>
                 </form>
                 <h3>Default values</h3>
                 <form role="form" class="form-horizontal">
                     <div class="form-group">
-                        <label for="small-icons" class="col-sm-3 control-label">Small icon</label>
+                        <label for="small-icons" class="col-sm-3 control-label">Icon</label>
                         <div class="col-sm-9">
                             <div class="checkbox">
                                 <label>
@@ -76,6 +78,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <button type="button" class="btn btn-primary btn-block" id="button-apply-color">Apply color to all cards</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="default-icon" class="col-sm-3 control-label">Icon</label>
                         <div class="col-sm-9">
                             <div class="input-group">
@@ -87,14 +95,26 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="default-title-size" class="col-sm-3 control-label">Title size</label>
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <button type="button" class="btn btn-primary btn-block" id="button-apply-icon">Apply icon to all cards</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <button type="button" class="btn btn-primary btn-block" id="button-apply-icon-back">Apply icon to all backs</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="default-title-size" class="col-sm-3 control-label">Title</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 <select class="form-control" id="default-title-size">
-                                    <option value="big">big</option>
-                                    <option value="normal" selected>normal</option>
-                                    <option value="small">small</option>
-                                    <option value="tiny">tiny</option>
+                                    <option value="big">big font</option>
+                                    <option value="normal" selected>normal font</option>
+                                    <option value="small">small font</option>
+                                    <option value="tiny">tiny font</option>
                                 </select>
                             </div>
                         </div>
