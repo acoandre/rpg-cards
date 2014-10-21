@@ -120,8 +120,7 @@ function ui_update_selected_card() {
         $("#card-icon").val(card.icon);
         $("#card-icon-back").val(card.icon_back);
         $("#card-contents").val(card.contents.join("\n"));
-        $("#card-color").val(card.color);
-        ui_update_card_color_selector(card.color);
+        $("#card-color").val(card.color).change();
     }
 
     ui_render_selected_card();
@@ -158,7 +157,7 @@ function ui_setup_color_selector() {
     // Callbacks for when the user picks a color
     $('#default_color_selector').colorselector({
         callback: function (value, color, title) {
-            $("#default_color").val(title);
+            $("#default-color").val(title);
             ui_set_default_color(title);
         }
     });
@@ -169,24 +168,13 @@ function ui_setup_color_selector() {
         }
     });
 
-    // Callbacks for when the user enters a color as a text
-    $("#default_color").change(function (e) {
-        var color = $("#default_color").val();
-        if ($("#default_color_selector option[value='" + color + "']").length > 0) {
-            $("#default_color_selector").colorselector("setValue", color);
-        } else {
-            $("#default_color_selector").colorselector("setValue", "");
-            $("#default_color").val(color);
-        }
-        ui_set_default_color(color);
-    });
-
     // Styling
     $(".dropdown-colorselector").addClass("input-group-addon color-input-addon");
 }
 
 function ui_set_default_color(color) {
     card_options.default_color = color;
+    ui_render_selected_card();
 }
 
 function ui_change_card_title() {
@@ -217,22 +205,37 @@ function ui_set_card_color(value) {
     }
 }
 
-function ui_update_card_color_selector(color) {
-    if ($("#card_color_selector option[value='" + color + "']").length > 0) {
+function ui_update_card_color_selector(color, input, selector) {
+    if ($(selector + " option[value='" + color + "']").length > 0) {
         // Update the color selector to the entered value
-        $("#card_color_selector").colorselector("setValue", color);
+        $(selector).colorselector("setValue", color);
     } else {
         // Unknown color - select a neutral color and reset the text value
-        $("#card_color_selector").colorselector("setValue", "");
-        $("#card-color").val(color);
+        $(selector).colorselector("setValue", "");
+        input.val(color);
     }
 }
 
 function ui_change_card_color() {
-    var color = $(this).val();
+    var input = $(this);
+    var color = input.val();
 
-    ui_update_card_color_selector(color);
+    ui_update_card_color_selector(color, input, "#card_color_selector");
     ui_set_card_color(color);
+}
+
+function ui_change_default_color() {
+    var input = $(this);
+    var color = input.val();
+
+    ui_update_card_color_selector(color, input, "#default_color_selector");
+    ui_set_default_color(color);
+}
+
+function ui_change_default_icon() {
+    var value = $(this).val();
+    card_options.default_icon = value;
+    ui_render_selected_card();
 }
 
 function ui_change_card_contents() {
@@ -245,6 +248,15 @@ function ui_change_card_contents() {
     }
 }
 
+function ui_change_default_title_size() {
+    card_options.default_title_size = $(this).val();
+    ui_render_selected_card();
+}
+
+function ui_change_default_icon_size() {
+    card_options.icon_inline = $(this).is(':checked');
+    ui_render_selected_card();
+}
 
 $(document).ready(function () {
     ui_setup_color_selector();
@@ -267,6 +279,11 @@ $(document).ready(function () {
     $("#card-icon-back").change(ui_change_card_property);
     $("#card-color").change(ui_change_card_color);
     $("#card-contents").change(ui_change_card_contents);
+
+    $("#default-color").change(ui_change_default_color);
+    $("#default-icon").change(ui_change_default_icon);
+    $("#default-title-size").change(ui_change_default_title_size);
+    $("#small-icons").change(ui_change_default_icon_size);
 
     $(".icon-select-button").click(ui_select_icon);
     
