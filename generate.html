@@ -42,18 +42,42 @@
         </div>
         <div class="row">
             <div class="col-md-12 col-lg-3">
-                <h3>Menu</h3>
-                <form role="form">
-                    <span class="help-block" id="total_card_count">Deck contains 0 cards.</span>
+                <!--<h3>Menu</h3>-->
+                <form role="form" class="form-horizontal">
                     <input type="file" id="file-load" name="files[]" multiple class="form-control" style="display:none" />
                     <a href="" id="file-save-link" style="display:none">Hidden download link</a>
-                    <button type="button" class="btn btn-info btn-block" id="button-help">Open Help</button>
-                    <button type="button" class="btn btn-danger btn-block" id="button-clear">Delete all cards</button>
-                    <button type="button" class="btn btn-primary btn-block" id="button-load-sample">Load sample cards (discards current data)</button>
-                    <button type="button" class="btn btn-primary btn-block" id="button-load">Load cards from file</button>
-                    <button type="button" class="btn btn-primary btn-block" id="button-save">Save cards to file</button>
-                    <button type="button" class="btn btn-primary btn-block" id="button-sort-name">Sort cards by name</button>
-                    <button type="button" class="btn btn-success btn-block" id="button-generate">Generate cards</button>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-info btn-block" id="button-help">Open Help</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-danger btn-block" id="button-clear">Delete all</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary btn-block" id="button-load-sample">Load sample</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary btn-block" id="button-load">Load from file</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary btn-block" id="button-sort-name">Sort by name</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary btn-block" id="button-save">Save to file</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary btn-block" id="button-sort-name">Sort by name</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-success btn-block" id="button-generate">Generate</button>
+                        </div>
+                    </div>
                     <span class="help-block">Generated cards open in a new tab or window.</span>
                 </form>
                 <h3>Default values</h3>
@@ -122,11 +146,16 @@
                 </form>
             </div>
             <div class="col-md-12 col-lg-5">
-                <h3>Card</h3>
-                <span class="help-block">Use this part to edit individual cards.</span>
+                <!--<h3>Card</h3>-->
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="selected-card" class="col-sm-2 control-label">Selected card</label>
+                        <label for="selected-card" class="col-sm-2 control-label">Deck</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" id="total_card_count">Deck contains 0 cards.</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="selected-card" class="col-sm-2 control-label">Card</label>
                         <div class="col-sm-10">
                             <select class="form-control" id="selected-card"></select>
                         </div>
@@ -134,7 +163,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label"></label>
                         <div class="col-sm-4">
-                            <button type="button" class="btn btn-danger btn-block" id="button-delete-card">Delete selected card</button>
+                            <button type="button" class="btn btn-danger btn-block" id="button-delete-card">Delete card</button>
                         </div>
                         <div class="col-sm-3">
                             <button type="button" class="btn btn-primary btn-block" id="button-add-card">Add new card</button>
@@ -195,9 +224,8 @@
                 </form>
             </div>
             <div class="col-md-12 col-lg-4">
-                <h3>Preview</h3>
-                <span class="help-block">Preview might not be 100% accurate due to style conflicts.</span>
-                <div id="preview-container">
+                <!--<h3>Preview</h3>-->
+                <div id="preview-container" class="preview-container">
                 </div>
             </div>
         </div>

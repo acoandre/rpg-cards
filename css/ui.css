@@ -1,11 +1,37 @@
 #preview-container {
-    padding: 10px;
-    border: 10px gray;
+    margin: 10px;
     background-color: white;
-    height: 100mm;
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
+    align-items: center;
+}
+
+/* Small screen (preview fills all columns) */
+@media (max-width : 1199px) {
+    .preview-container {
+        flex-direction: row;
+    }
+    .card {
+        margin-right: 10px;
+    }
+}
+/* Large screen (preview fills one column, columns are narrow) */
+@media (min-width: 1200px) and (max-width : 1599px) {
+    .preview-container {
+        flex-direction: column;
+    }
+    .card {
+        margin-bottom: 10px;
+    }
+}
+/* Huge screen (preview fills one column, columns are wide) */
+@media (min-width : 1600px) {
+    .preview-container {
+        flex-direction: row;
+    }
+    .card {
+        margin-right: 10px;
+    }
 }
 
 .row-eq-height {
@@ -20,4 +46,17 @@
     border-radius: 4px !important;
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.card h4 {
+    /* Revert bootstrap style for the card preview */
+    font-weight: bold;
+}
+
+.form-horizontal {
+    margin-top: 10px;
 }
