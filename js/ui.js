@@ -55,9 +55,10 @@ function ui_add_new_card() {
 
 function ui_duplicate_card() {
     if (card_data.length > 0) {
-        card_data.push(ui_selected_card());
-        var card = card_data[card_data.length - 1];
-        card.title = card.title + " (Copy)";
+        var old_card = ui_selected_card();
+        var new_card = $.extend({}, old_card);
+        card_data.push(new_card);
+        new_card.title = new_card.title + " (Copy)";
     } else {
         card_data.push(card_default_data());
     }
