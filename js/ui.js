@@ -96,6 +96,7 @@ function ui_update_selected_card() {
         $("#card_title").val(card.title);
         $("#card_icon").val(card.icon);
         $("#card_contents").val(card.contents.join("\n"));
+        $("#card_color").val(card.color);
 
         ui_render_card(card);
     }
@@ -112,7 +113,13 @@ function ui_open_help() {
     window.open("http://crobi.github.io/rpg-cards/", "_blank");
 }
 
+function ui_select_icon() {
+    window.open("http://game-icons.net/", "_blank");
+}
+
 $(document).ready(function () {
+    $(".dropdown-colorselector").addClass("input-group-addon color-input-addon");
+
     $("#button-generate").click(ui_generate);
     $("#button-load").click(function () { $("#file-load").click(); });
     $("#file-load").change(ui_load_files);
@@ -122,6 +129,8 @@ $(document).ready(function () {
     $("#button-delete-card").click(ui_delete_card);
     $("#button-help").click(ui_open_help);
     $("#selected_card").change(ui_update_selected_card);
+
+    $(".icon-select-button").click(ui_select_icon);
     
     ui_update_card_list();
 });
