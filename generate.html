@@ -18,16 +18,18 @@
     <script type="text/javascript" defer src="js/ui.js"></script>
     <!-- CSS -->
     <link href="css/ui.css" rel="stylesheet" />
+    <link href="css/cards.css" rel="stylesheet" />
+    <link href="css/icons.css" rel="stylesheet" />
+    <link href="css/custom-icons.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <h1 class="page-header">RPG card generator</h1>
         <div class="row">
             <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <strong>Experimental user interface!</strong>
-                This user interface is experimental and largely non-functional.
-                The only thing that works right now are the "load sample cards", "load cards from file", "save cards", and "generate cards" buttons.
+                This user interface is experimental and some UI elements are non-functional.
             </div>
             <div class="alert alert-warning alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -35,26 +37,21 @@
                 Some RPG systems are protected by copyright.
                 Even if some spell/item data is freely available, it does not mean you may redistribute cards containing such data.
             </div>
-            <div class="alert alert-info alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                If you need help on how to use this tool, go visit <a href="http://crobi.github.io/rpg-cards/" class="alert-link">http://crobi.github.io/rpg-cards/</a>.
-            </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
+        <div class="row row-eq-height">
+            <div class="col-md-3">
                 <h3>Menu</h3>
                 <form role="form">
                     <span class="help-block" id="total_card_count">Deck contains 0 cards.</span>
                     <input type="file" id="file-load" name="files[]" multiple class="form-control" style="display:none" />
                     <a href="" id="file-save-link" style="display:none">Hidden download link</a>
+                    <button type="button" class="btn btn-info btn-block" id="button-help">Open Help</button>
                     <button type="button" class="btn btn-primary btn-block" id="button-load">Load cards from file</button>
-                    <button type="button" class="btn btn-primary btn-block" id="button-save">Save cards</button>
+                    <button type="button" class="btn btn-primary btn-block" id="button-save">Save cards to file</button>
                     <button type="button" class="btn btn-primary btn-block" id="button-load-sample">Load sample cards</button>
                     <button type="button" class="btn btn-success btn-block" id="button-generate">Generate cards</button>
                     <span class="help-block">Note: generated cards open in a new tab or window.</span>
                 </form>
-            </div>
-            <div class="col-md-4">
                 <h3>Global options</h3>
                 <form role="form">
                     <div class="checkbox">
@@ -84,22 +81,13 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-4">
-                <h3>Card list</h3>
+            <div class="col-md-5">
+                <h3>Card</h3>
                 <form role="form">
                     <div class="form-group">
                         <label for="selected_card">Selected card</label>
                         <select class="form-control" id="selected_card"></select>
                     </div>
-                    <button type="button" class="btn btn-primary btn-block" id="button-delete-card">Delete selected card</button>
-                    <button type="button" class="btn btn-primary btn-block" id="button-add-card">Add new card</button>
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <h3>Card</h3>
-                <form role="form">
                     <div class="form-group">
                         <label for="card_name">Name</label>
                         <input type="text" id="card_title" class="form-control" placeholder="Title" readonly>
@@ -118,15 +106,16 @@
                     <div class="form-group">
                         <label for="card_contents">Contents</label>
                         <textarea class="form-control" rows="10" id="card_contents" readonly wrap="off">
-subtitle | Subtitle text
-rule
-property | Name | Text
                         </textarea>
                     </div>
+                    <button type="button" class="btn btn-primary btn-block" id="button-delete-card">Delete selected card</button>
+                    <button type="button" class="btn btn-primary btn-block" id="button-add-card">Add new card</button>
                 </form>
             </div>
             <div class="col-md-4">
                 <h3>Preview</h3>
+                <div id="preview-container">
+                </div>
             </div>
         </div>
     </div>

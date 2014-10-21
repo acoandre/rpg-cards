@@ -1,5 +1,6 @@
 // Ugly global variable holding the current card deck
 var card_data = [];
+var card_options = card_default_options();
 
 function ui_generate() {
     // Generate output HTML
@@ -95,7 +96,20 @@ function ui_update_selected_card() {
         $("#card_title").val(card.title);
         $("#card_icon").val(card.icon);
         $("#card_contents").val(card.contents.join("\n"));
+
+        ui_render_card(card);
     }
+}
+
+function ui_render_card(card) {
+    var front = card_generate_front(card, card_options);
+    var back = card_generate_back(card, card_options);
+    $('#preview-container').empty();
+    $('#preview-container').html(front + "\n" + back);
+}
+
+function ui_open_help() {
+    window.open("http://crobi.github.io/rpg-cards/", "_blank");
 }
 
 $(document).ready(function () {
@@ -106,8 +120,9 @@ $(document).ready(function () {
     $("#button-save").click(ui_save_file);
     $("#button-add-card").click(ui_add_new_card);
     $("#button-delete-card").click(ui_delete_card);
+    $("#button-help").click(ui_open_help);
     $("#selected_card").change(ui_update_selected_card);
-
+    
     ui_update_card_list();
 });
 

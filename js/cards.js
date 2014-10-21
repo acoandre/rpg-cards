@@ -179,7 +179,6 @@ function card_generate_color_gradient_style(color, options) {
 function card_generate_front(data, options) {
     var color = card_data_color_front(data, options);
     var style_color = card_generate_color_style(color, options);
-    var count = data.count || 1;
 
     var result = "";
     result += '<div class="card" ' + style_color + '>';
@@ -188,7 +187,7 @@ function card_generate_front(data, options) {
     result += card_generate_contents(data.contents, data, options);
     result += '</div>';
 
-    return card_repeat(result, count);
+    return result;
 }
 
 function card_generate_back(data, options) {
@@ -196,7 +195,6 @@ function card_generate_back(data, options) {
     var style_color = card_generate_color_style(color, options);
     var style_gradient = card_generate_color_gradient_style(color, options);
     var icon = card_data_icon_back(data, options);
-    var count = data.count || 1;
 
     var result = "";
     result += '<div class="card" ' + style_color + '>';
@@ -207,7 +205,7 @@ function card_generate_back(data, options) {
     result += '  </div>';
     result += '</div>';
 
-    return card_repeat(result, count);
+    return result;
 }
 
 function card_generate_empty(count, options) {
@@ -285,8 +283,11 @@ function card_pages_generate_html(card_data, options) {
     var front_cards = [];
     var back_cards = [];
     card_data.forEach(function (data) {
-        front_cards = front_cards.concat(card_generate_front(data, options));
-        back_cards = back_cards.concat(card_generate_back(data, options));
+        var count = data.count || 1;
+        var front = card_generate_front(data, options);
+        var back = card_generate_back(data, options);
+        front_cards = front_cards.concat(card_repeat(front, count));
+        back_cards = back_cards.concat(card_repeat(back, count));
     });
 
     // Add padding cards so that the last page is full of cards
