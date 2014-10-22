@@ -137,6 +137,10 @@ function card_element_unknown(params, card_data, options) {
     return '<div>Unknown element: ' + params.join('<br />') + '</div>';
 }
 
+function card_element_empty(params, card_data, options) {
+    return '';
+}
+
 var card_element_generators = {
     subtitle: card_element_subtitle,
     property: card_element_property,
@@ -146,7 +150,8 @@ var card_element_generators = {
     text: card_element_text,
     bullet: card_element_bullet,
     fill: card_element_fill,
-    section: card_element_section
+    section: card_element_section,
+    disabled: card_element_empty
 };
 
 // ============================================================================
