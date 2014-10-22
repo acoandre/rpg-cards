@@ -180,3 +180,18 @@
     margin-top: 0.5em;
     margin-bottom: 0.2em;
 }
+
+.card-bullet-line {
+    font-size: inherit;
+    color: black;
+    padding-left: 16px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.card-bullet {
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: inherit;
+}

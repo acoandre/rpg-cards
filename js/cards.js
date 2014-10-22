@@ -113,6 +113,14 @@ function card_element_text(params, card_data, options) {
     return result;
 }
 
+function card_element_bullet(params, card_data, options) {
+    var result = "";
+    result += '<ul class="card-bullet-line">';
+    result += '   <li class="card-bullet">' + params[0] + '</li>';
+    result += '</ul>';
+    return result;
+}
+
 function card_element_section(params, card_data, options) {
     var color = card_data_color_front(card_data, options);
     var section = params[0] || "";
@@ -135,6 +143,7 @@ var card_element_generators = {
     ruler: card_element_ruler,
     description: card_element_description,
     text: card_element_text,
+    bullet: card_element_bullet,
     fill: card_element_fill,
     section: card_element_section
 };
