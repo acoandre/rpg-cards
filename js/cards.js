@@ -5,10 +5,11 @@ function card_default_options() {
     return {
         default_color: "black",
         default_icon: "ace",
-        default_title_size: "normal",
+        default_title_size: "13",
         page_size: "A4",
         page_rows: 3,
         page_columns: 3,
+        card_size: "25x35",
         icon_inline: true
     }
 }
@@ -191,7 +192,7 @@ function card_generate_front(data, options) {
     var style_color = card_generate_color_style(color, options);
 
     var result = "";
-    result += '<div class="card" ' + style_color + '>';
+    result += '<div class="card card-size-' + options.card_size + '" ' + style_color + '>';
     result += card_element_icon(data, options);
     result += card_element_title(data, options);
     result += card_generate_contents(data.contents, data, options);
@@ -207,7 +208,7 @@ function card_generate_back(data, options) {
     var icon = card_data_icon_back(data, options);
 
     var result = "";
-    result += '<div class="card" ' + style_color + '>';
+    result += '<div class="card card-size-' + options.card_size + '" ' + style_color + '>';
     result += '  <div class="card-back" ' + style_gradient + '>';
     result += '    <div class="card-back-inner">';
     result += '      <div class="card-back-icon icon-' + icon + '" ' + style_color + '></div>';
@@ -222,7 +223,7 @@ function card_generate_empty(count, options) {
     var style_color = card_generate_color_style("white");
 
     var result = "";
-    result += '<div class="card" ' + style_color + '>';
+    result += '<div class="card card-size-' + options.card_size + '" ' + style_color + '>';
     result += '</div>';
 
     return card_repeat(result, count);
@@ -262,11 +263,11 @@ function cards_pages_flip_left_right(cards, rows, cols) {
     return result;
 }
 
-function card_pages_add_padding(cards, rows, cols) {
-    var cards_per_page = rows * cols;
+function card_pages_add_padding(cards, options) {
+    var cards_per_page = options.page_rows * options.page_columns;
     var last_page_cards = cards.length % cards_per_page;
     if (last_page_cards !== 0) {
-        return cards.concat(card_generate_empty(cards_per_page - last_page_cards));
+        return cards.concat(card_generate_empty(cards_per_page - last_page_cards, options));
     } else {
         return cards;
     }
@@ -277,7 +278,7 @@ function card_pages_wrap(pages, options) {
 
     var result = "";
     for (var i = 0; i < pages.length; ++i) {
-        result += '<page size="' + size + '">\n';
+        result += '<page class="page page-preview" size="' + size + '">\n';
         result += pages[i].join("\n");
         result += '</page>\n';
     }
@@ -301,8 +302,8 @@ function card_pages_generate_html(card_data, options) {
     });
 
     // Add padding cards so that the last page is full of cards
-    front_cards = card_pages_add_padding(front_cards, rows, cols);
-    back_cards = card_pages_add_padding(back_cards, rows, cols);
+    front_cards = card_pages_add_padding(front_cards, options);
+    back_cards = card_pages_add_padding(back_cards, options);
 
     // Split cards to pages
     var front_pages = card_pages_split(front_cards, rows, cols);

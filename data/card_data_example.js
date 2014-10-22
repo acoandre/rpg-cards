@@ -77,7 +77,7 @@ var card_data_example = [
         "count": 1,
         "color": "dimgray",
         "title": "Shortsword of Very Long Names",
-        "title_size": "tiny",
+        "title_size": "10",
         "icon": "crossed-swords",
         "contents": [
             "subtitle | Simple melee weapon (10gp)",

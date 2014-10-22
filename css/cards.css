@@ -1,9 +1,7 @@
 .card {
-    width:66mm;
-    min-width:66mm;
-    height:95mm;
     border: 2mm solid;
     border-radius: 4px;
+    box-sizing: border-box;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -101,23 +99,34 @@
     background-color: inherit;
     color: white;
 }
-.card-title-big {
-    font-size: 6mm;
-    line-height: 6mm;
-}
-.card-title-normal {
-    font-size: 5mm;
-    line-height: 6mm;
-}
-.card-title-small {
-    font-size: 4mm;
+.card-title-16 {
+    font-size: 16pt;
     line-height: 6.5mm;
 }
-.card-title-tiny {
-    font-size: 3.5mm;
-    line-height: 6.75mm;
+.card-title-15 {
+    font-size: 15pt;
+    line-height: 6.5mm;
 }
-
+.card-title-14 {
+    font-size: 14pt;
+    line-height: 6.5mm;
+}
+.card-title-13 {
+    font-size: 13pt;
+    line-height: 7mm;
+}
+.card-title-12 {
+    font-size: 12pt;
+    line-height: 7mm;
+}
+.card-title-11 {
+    font-size: 11pt;
+    line-height: 7.5mm;
+}
+.card-title-10 {
+    font-size: 10pt;
+    line-height: 7.5mm;
+}
 .card-subtitle {
     height: 18px;
     line-height: 18px;
