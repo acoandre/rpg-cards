@@ -72,7 +72,7 @@ function card_element_icon(card_data, options) {
 
 function card_element_subtitle(params, card_data, options) {
     var subtitle = params[0] || "";
-    return '<div class="card-subtitle">' + subtitle + '</div>';
+    return '<div class="card-element card-subtitle">' + subtitle + '</div>';
 }
 
 function card_element_ruler(params, card_data, options) {
@@ -89,7 +89,7 @@ function card_element_ruler(params, card_data, options) {
 
 function card_element_property(params, card_data, options) {
     var result = "";
-    result += '<div class="card-property-line">';
+    result += '<div class="card-element card-property-line">';
     result += '   <h4 class="card-property-name">' + params[0] + '</h4>';
     result += '   <p class="card-p card-property-text">' + params[1] + '</p>';
     result += '</div>';
@@ -98,7 +98,7 @@ function card_element_property(params, card_data, options) {
 
 function card_element_description(params, card_data, options) {
     var result = "";
-    result += '<div class="card-description-line">';
+    result += '<div class="card-element card-description-line">';
     result += '   <h4 class="card-description-name">' + params[0] + '</h4>';
     result += '   <p class="card-p card-description-text">' + params[1] + '</p>';
     result += '</div>';
@@ -107,7 +107,7 @@ function card_element_description(params, card_data, options) {
 
 function card_element_text(params, card_data, options) {
     var result = "";
-    result += '<div class="card-description-line">';
+    result += '<div class="card-element card-description-line">';
     result += '   <p class="card-p card-description-text">' + params[0] + '</p>';
     result += '</div>';
     return result;
@@ -115,7 +115,7 @@ function card_element_text(params, card_data, options) {
 
 function card_element_bullet(params, card_data, options) {
     var result = "";
-    result += '<ul class="card-bullet-line">';
+    result += '<ul class="card-element card-bullet-line">';
     result += '   <li class="card-bullet">' + params[0] + '</li>';
     result += '</ul>';
     return result;
@@ -129,7 +129,7 @@ function card_element_section(params, card_data, options) {
 
 function card_element_fill(params, card_data, options) {
     var flex = params[0] || "1";
-    return '<div class="card-fill" style="flex:' + flex + '"></div>';
+    return '<span class="card-fill" style="flex:' + flex + '"></span>';
 }
 
 function card_element_unknown(params, card_data, options) {
