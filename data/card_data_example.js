@@ -106,9 +106,9 @@ var card_data_example = [
             "rule",
             "fill | 2",
             "description | Spells | You can use your action to cast the following spells:",
-            "text | - magic missile, 1st level (1 charge)",
-            "text | - magic missile, 2nd level (2 charges)",
-            "text | - magic missile, 3rd level (3 charges)",
+            "bullet | magic missile, 1st level (1 charge)",
+            "bullet | magic missile, 2nd level (2 charges)",
+            "bullet | magic missile, 3rd level (3 charges)",
             "fill | 3"
         ]
     },
