@@ -77,6 +77,9 @@ function ui_load_files(evt) {
 
         reader.readAsText(f);
     }
+
+    // Reset file input
+    $("#file-load-form")[0].reset();
 }
 
 function ui_add_cards(data) {
