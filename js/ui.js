@@ -2,6 +2,37 @@
 var card_data = [];
 var card_options = card_default_options();
 
+function mergeSort(arr, compare) {
+    if (arr.length < 2)
+        return arr;
+
+    var middle = parseInt(arr.length / 2);
+    var left = arr.slice(0, middle);
+    var right = arr.slice(middle, arr.length);
+
+    return merge(mergeSort(left, compare), mergeSort(right, compare), compare);
+}
+
+function merge(left, right, compare) {
+    var result = [];
+
+    while (left.length && right.length) {
+        if (compare(left[0], right[0]) <= 0) {
+            result.push(left.shift());
+        } else {
+            result.push(right.shift());
+        }
+    }
+
+    while (left.length)
+        result.push(left.shift());
+
+    while (right.length)
+        result.push(right.shift());
+
+    return result;
+}
+
 function ui_generate() {
     // Generate output HTML
     var card_html = card_pages_generate_html(card_data, card_options);
@@ -260,7 +291,28 @@ function ui_change_default_icon_size() {
 }
 
 function ui_sort_by_name() {
-    card_data.sort(function (a, b) { return b.title < a.title });
+    card_data = mergeSort(card_data, function (a, b) {
+        if (a.title > b.title) {
+            return 1;
+        }
+        if (a.title < b.title) {
+            return -1;
+        }
+        return 0;
+    });
+    ui_update_card_list();
+}
+
+function ui_sort_by_icon() {
+    card_data = mergeSort(card_data, function (a, b) {
+        if (a.icon > b.icon) {
+            return 1;
+        }
+        if (a.icon < b.icon) {
+            return -1;
+        }
+        return 0;
+    });
     ui_update_card_list();
 }
 
@@ -296,6 +348,7 @@ $(document).ready(function () {
     $("#button-load-sample").click(ui_load_sample);
     $("#button-save").click(ui_save_file);
     $("#button-sort-name").click(ui_sort_by_name);
+    $("#button-sort-icon").click(ui_sort_by_icon);
     $("#button-add-card").click(ui_add_new_card);
     $("#button-duplicate-card").click(ui_duplicate_card);
     $("#button-delete-card").click(ui_delete_card);
