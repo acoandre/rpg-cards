@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>RPG cards</title>
+    <meta charset="UTF-8">
     <!-- Library: jQuery -->
     <script type="text/javascript" src="lib/jquery/jquery.min.js" charset="utf-8"></script>
     <!-- Library: Bootstrap -->
@@ -45,7 +46,6 @@
                 <!--<h3>Menu</h3>-->
                 <form role="form" class="form-horizontal">
                     <input type="file" id="file-load" name="files[]" multiple class="form-control" style="display:none" />
-                    <a href="" id="file-save-link" style="display:none">Hidden download link</a>
                     <div class="form-group">
                         <div class="col-sm-6">
                             <button type="button" class="btn btn-info btn-block" id="button-help">Open Help</button>
@@ -67,7 +67,8 @@
                             <button type="button" class="btn btn-primary btn-block" id="button-sort-name">Sort by name</button>
                         </div>
                         <div class="col-sm-6">
-                            <button type="button" class="btn btn-primary btn-block" id="button-save">Save to file</button>
+                            <button type="button" class="btn btn-primary btn-block" id="button-save" onclick="ui_save_file()">Save to file</button>
+                            <a href="" download="rpg_cards.json" id="file-save-link" style="display:none">Hidden download link</a>
                         </div>
                     </div>
                     <div class="form-group">

@@ -141,7 +141,7 @@ function ui_save_file() {
     a.download = "rpg_cards.json";
     a.click();
 
-    URL.revokeObjectURL(url);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 500);
 }
 
 function ui_update_selected_card() {
@@ -346,7 +346,7 @@ $(document).ready(function () {
     $("#file-load").change(ui_load_files);
     $("#button-clear").click(ui_clear_all);
     $("#button-load-sample").click(ui_load_sample);
-    $("#button-save").click(ui_save_file);
+    //$("#button-save").click(ui_save_file);
     $("#button-sort-name").click(ui_sort_by_name);
     $("#button-sort-icon").click(ui_sort_by_icon);
     $("#button-add-card").click(ui_add_new_card);
