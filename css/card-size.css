@@ -41,6 +41,11 @@ page[size="Letter"] {
     height: 278mm; /* full: 279.4mm (11.0in) */
 }
 
+page[size="25x35"] {
+    width: 63.6mm;
+    height: 89.0mm;
+}
+
 /* Default card size */
 .card {
     width:2.5in;
