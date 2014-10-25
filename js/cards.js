@@ -283,7 +283,11 @@ function card_pages_wrap(pages, options) {
 
     var result = "";
     for (var i = 0; i < pages.length; ++i) {
-        result += '<page class="page page-preview" size="' + size + '">\n';
+        var style = "";
+        if (i % 2 == 1) {
+            style += 'style="background-color:'+options.default_color+'"';
+        }
+        result += '<page class="page page-preview" size="' + size + '" ' + style + '>\n';
         result += pages[i].join("\n");
         result += '</page>\n';
     }
