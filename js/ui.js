@@ -388,6 +388,7 @@ $(document).ready(function () {
     $("#page-size").change(ui_change_option);
     $("#page-rows").change(ui_change_option);
     $("#page-columns").change(ui_change_option);
+    $("#card-arrangement").change(ui_change_option);
     $("#card-size").change(ui_change_option);
 
     $("#default-color").change(ui_change_default_color);
