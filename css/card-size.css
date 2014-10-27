@@ -12,11 +12,6 @@
     3) Fill each page with cards, arranged around the center of the page.
 */
 
-/* Remove page margins */
-@page {
-    margin: 0;
-    padding: 0;
-}
 
 /* Center all content within a page */
 .page {
@@ -26,37 +21,36 @@
     flex-direction: row;
     flex-wrap: wrap;
     page-break-after: always;
-    padding: 0mm;
+    padding: 0;
 }
 
-/* A4 paper area (minus epsilon for rounding) */
+/* A4 paper area */
+/* Chrome has problems with page sizes given in metric units. Make the paper area slightly smaller to work around this. */
 page[size="A4"] {
-    width:  209mm; /* full: 210.0mm */
-    height: 295mm; /* full: 297.0mm */
+    width:  210mm; /* full: 210.0mm */
+    height: 296mm; /* full: 297.0mm */
 }
 
-/* US letter area (minus epsilon for rounding) */
+/* US letter area */
 page[size="Letter"] {
-    width:  215mm; /* full: 215.9mm (8.5in) */
-    height: 278mm; /* full: 279.4mm (11.0in) */
+    width:  8.5in;
+    height: 11.0in;
 }
 
 page[size="25x35"] {
-    width: 63.6mm;
-    height: 89.0mm;
+    width: 2.5in;
+    height: 3.5in;
 }
 
 /* Default card size */
 .card {
     width:2.5in;
-    min-width:2.5in;
     height:3.5in;
 }
 
 /* Bridge card size */
 .card-size-225x35 {
     width:2.25in;
-    min-width:2.25in;
     height:3.5in;
 }
 .card-size-225x35 .card-back-icon {
@@ -67,7 +61,6 @@ page[size="25x35"] {
 /* Poker / Magic card size */
 .card-size-25x35 {
     width:2.5in;
-    min-width:2.5in;
     height:3.5in;
 }
 .card-size-25x35 .card-back-icon {
@@ -89,7 +82,6 @@ page[size="25x35"] {
 /* Landscape big card */
 .card-size-75x50 {
     width:7.5in;
-    min-width:7.5in;
     height:5.0in;
 }
 .card-size-75x50 .card-back-icon {
@@ -97,6 +89,7 @@ page[size="25x35"] {
     height: 2in;
 }
 
+/* Card sizes that fill out the entire sheet of paper (minimal margins) */
 .page[size="A4"] .card-size-full3x3 {
     width:69mm;
     height:98mm;

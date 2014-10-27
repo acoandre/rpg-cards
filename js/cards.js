@@ -309,6 +309,28 @@ function card_pages_wrap(pages, options) {
     return result;
 }
 
+function card_pages_generate_style(options) {
+    var size = "a4";
+    switch (options.page_size) {
+        case "A3": size = "A3 portrait"; break;
+        case "A4": size = "210mm 297mm"; break;
+        case "A5": size = "A5 portrait"; break;
+        case "Letter": size = "letter portrait"; break;
+        case "25x35": size = "2.5in 3.5in"; break;
+        default: size = "auto";
+    }
+
+    var result = "";
+    result += "<style>\n";
+    result += "@page {\n";
+    result += "    margin: 0;\n";
+    result += "    size:" + size + ";\n";
+    result += "    -webkit-print-color-adjust: exact;\n";
+    result += "}\n";
+    result += "</style>\n";
+    return result;
+}
+
 function card_pages_generate_html(card_data, options) {
     options = options || card_default_options();
     var rows = options.page_rows || 3;
@@ -351,8 +373,12 @@ function card_pages_generate_html(card_data, options) {
         pages = card_pages_split(cards, rows, cols);
     }
 
-    // Wrap all pages in a <page> element
-    return card_pages_wrap(pages, options);
+    // Wrap all pages in a <page> element and add CSS for the page size
+    var result = "";
+    result += card_pages_generate_style(options);
+    result += card_pages_wrap(pages, options);
+
+    return result;
 }
 
 function card_pages_insert_into(card_data, container) {

@@ -18,11 +18,15 @@ body {
 @media print {
   .page-preview {
     margin: 0;
+    padding: 0;
+    border: 0;
     box-shadow: 0;
     background-color: white;
   }
   .page-background {
     margin: 0;
+    padding: 0;
+    border: 0;
     box-shadow: 0;
     /* Set the background to gray to visualize the page size in the print preview */
     background-color: gray;
