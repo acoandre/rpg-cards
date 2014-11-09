@@ -137,6 +137,43 @@ function card_element_text(params, card_data, options) {
     return result;
 }
 
+function card_element_dndstats(params, card_data, options) {
+    var stats = [10, 10, 10, 10, 10, 10];
+    var mods = [0,0,0,0,0,0];
+    for (var i = 0; i < 6; ++i) {
+        stats[i] = parseInt(params[i], 10) || 0;
+        var mod = Math.floor(((stats[i] - 10) / 2));
+        if (mod >= 0) {
+            mod = "+" + mod;
+        } else {
+            mod = "" + mod;
+        }
+        mods[i] = "&nbsp;(" + mod + ")";
+    }
+
+    var result = "";
+    result += '<table class="card-stats">';
+    result += '    <tbody><tr>';
+    result += '      <th class="card-stats-header">STR</th>';
+    result += '      <th class="card-stats-header">DEX</th>';
+    result += '      <th class="card-stats-header">CON</th>';
+    result += '      <th class="card-stats-header">INT</th>';
+    result += '      <th class="card-stats-header">WIS</th>';
+    result += '      <th class="card-stats-header">CHA</th>';
+    result += '    </tr>';
+    result += '    <tr>';
+    result += '      <td class="card-stats-cell">' + stats[0] + mods[0] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[1] + mods[1] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[2] + mods[2] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[3] + mods[3] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[4] + mods[4] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[5] + mods[5] + '</td>';
+    result += '    </tr>';
+    result += '  </tbody>';
+    result += '</table>';
+    return result;
+}
+
 function card_element_bullet(params, card_data, options) {
     var result = "";
     result += '<ul class="card-element card-bullet-line">';
@@ -171,6 +208,7 @@ var card_element_generators = {
     ruler: card_element_ruler,
     boxes: card_element_boxes,
     description: card_element_description,
+    dndstats: card_element_dndstats,
     text: card_element_text,
     bullet: card_element_bullet,
     fill: card_element_fill,
