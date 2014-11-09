@@ -109,7 +109,8 @@ var card_data_example = [
             "bullet | magic missile, 1st level (1 charge)",
             "bullet | magic missile, 2nd level (2 charges)",
             "bullet | magic missile, 3rd level (3 charges)",
-            "fill | 3"
+            "fill | 3",
+            "boxes | 7 | 2.5"
         ]
     },
     {

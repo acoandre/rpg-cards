@@ -92,6 +92,25 @@ function card_element_ruler(params, card_data, options) {
     return result;
 }
 
+function card_element_boxes(params, card_data, options) {
+    var color = card_data_color_front(card_data, options);
+    var fill = ' fill="none"';
+    var stroke = ' stroke="' + color + '"';
+    var count = params[0] || 1;
+    var size = params[1] || 3;
+    var style = 'style="width:' + size + 'em;height:' + size + 'em"';
+
+    var result = "";
+    result += '<div class="card-element card-description-line">';
+    for (var i = 0; i < count; ++i) {
+        result += '<svg class="card-box" height="100" width="100" viewbox="0 0 100 100" preserveaspectratio="none" xmlns="http://www.w3.org/2000/svg" ' + style + '>';
+        result += '    <rect x="5" y="5" width="90" height="90" ' + fill + stroke + ' style="stroke-width:10">';
+        result += '</svg>';
+    }
+    result += '</div>';
+    return result;
+}
+
 function card_element_property(params, card_data, options) {
     var result = "";
     result += '<div class="card-element card-property-line">';
@@ -150,6 +169,7 @@ var card_element_generators = {
     property: card_element_property,
     rule: card_element_ruler,
     ruler: card_element_ruler,
+    boxes: card_element_boxes,
     description: card_element_description,
     text: card_element_text,
     bullet: card_element_bullet,

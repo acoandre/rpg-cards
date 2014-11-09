@@ -193,6 +193,13 @@
     margin-bottom: 0.3em;
 }
 
+.card-box {
+    display: inline;
+    height: 10mm;
+    width: 10mm;
+    margin-right: 0.3em;
+}
+
 .card-bullet-line {
     font-size: inherit;
     color: black;
