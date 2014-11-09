@@ -209,6 +209,18 @@ function ui_setup_color_selector() {
             ui_set_card_color(value);
         }
     });
+    $('#foreground_color_selector').colorselector({
+        callback: function (value, color, title) {
+            $("#foreground-color").val(title);
+            ui_set_foreground_color(value);
+        }
+    });
+    $('#background_color_selector').colorselector({
+        callback: function (value, color, title) {
+            $("#background-color").val(title);
+            ui_set_background_color(value);
+        }
+    });
 
     // Styling
     $(".dropdown-colorselector").addClass("input-group-addon color-input-addon");
@@ -217,6 +229,14 @@ function ui_setup_color_selector() {
 function ui_set_default_color(color) {
     card_options.default_color = color;
     ui_render_selected_card();
+}
+
+function ui_set_foreground_color(color) {
+    card_options.foreground_color = color;
+}
+
+function ui_set_background_color(color) {
+    card_options.background_color = color;
 }
 
 function ui_change_option() {
@@ -390,6 +410,7 @@ $(document).ready(function () {
     $("#page-columns").change(ui_change_option);
     $("#card-arrangement").change(ui_change_option);
     $("#card-size").change(ui_change_option);
+    $("#background-color").change(ui_change_option);
 
     $("#default-color").change(ui_change_default_color);
     $("#default-icon").change(ui_change_default_icon);

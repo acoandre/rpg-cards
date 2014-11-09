@@ -82,12 +82,12 @@
                             <button type="button" class="btn btn-success btn-block" id="button-generate">Generate</button>
                         </div>
                     </div>
-                    <span class="help-block">Generated cards open in a new tab or window.</span>
+                    <!--<span class="help-block">Generated cards open in a new tab or window.</span>-->
                 </form>
-                <h3>Sizes</h3>
+                <h3>Page settings</h3>
                 <form role="form" class="form-horizontal">
                     <div class="form-group">
-                        <label for="page-size" class="col-sm-4 control-label">Page</label>
+                        <label for="page-size" class="col-sm-4 control-label">Page Size</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="page-size" data-option="page_size">
                                 <option value="A4" selected>A4</option>
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="card-size" class="col-sm-4 control-label">Card</label>
+                        <label for="card-size" class="col-sm-4 control-label">Card Size</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="card-size" data-option="card_size">
                                 <option value="225x35">2.25&quot; x 3.5&quot; (Bridge)</option>
@@ -127,6 +127,24 @@
                                 <option value="front_only">Front side only</option>
                                 <option value="side_by_side">Side by side</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="foreground-color" class="col-sm-4 control-label">Front color</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <select id="foreground_color_selector" class="colorselector-data"></select>
+                                <input type="text" id="foreground-color" class="form-control" placeholder="Front page color" data-property="color" value="white">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="background-color" class="col-sm-4 control-label">Back color</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <select id="background_color_selector" class="colorselector-data"></select>
+                                <input type="text" id="background-color" class="form-control" placeholder="Back page color" data-property="color" value="white">
+                            </div>
                         </div>
                     </div>
                 </form>

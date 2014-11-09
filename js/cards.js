@@ -3,6 +3,8 @@
 // ============================================================================
 function card_default_options() {
     return {
+        foreground_color: "white",
+        background_color: "white",
         default_color: "black",
         default_icon: "ace",
         default_title_size: "13",
@@ -301,7 +303,9 @@ function card_pages_wrap(pages, options) {
     for (var i = 0; i < pages.length; ++i) {
         var style = "";
         if ((options.card_arrangement == "doublesided") &&  (i % 2 == 1)) {
-            style += 'style="background-color:'+options.default_color+'"';
+            style += 'style="background-color:' + options.background_color + '"';
+        } else {
+            style += 'style="background-color:' + options.foreground_color + '"';
         }
         result += '<page class="page page-preview" size="' + size + '" ' + style + '>\n';
         result += pages[i].join("\n");
