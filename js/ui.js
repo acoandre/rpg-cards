@@ -35,6 +35,11 @@ function merge(left, right, compare) {
 
 var ui_generate_modal_shown = false;
 function ui_generate() {
+    if (card_data.length == 0) {
+        alert("Your deck is empty. Please define some cards first, or load the sample deck.");
+        return;
+    }
+
     // Generate output HTML
     var card_html = card_pages_generate_html(card_data, card_options);
 
