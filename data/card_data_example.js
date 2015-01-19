@@ -129,5 +129,27 @@ var card_data_example = [
             "text | Drinking or administering a potion takes 1 action.",
             "fill | 3"
         ]
+    },
+    {
+        "count": 1,
+        "color": "black",
+        "title": "Goblin",
+        "icon": "imp-laugh",
+        "contents": [
+            "subtitle | Small humanoid (goblinoid)",
+            "rule",
+            "property | Armor class | 15 (leather armor, shield)",
+            "property | Hit points | 7 (2d6)",
+            "rule",
+            "dndstats | 8 | 14 | 10 | 10 | 8 | 8",
+            "rule",
+            "property | Skills | Stealth +6",
+            "property | Challenge | 1/4 (50 XP)",
+            "rule",
+            "description | Nimble escape | Disengage or Hide as bonus action",
+            "fill | 2",
+            "section | Actions",
+            "description | Scimitar | Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 5 (1d6 + 2) slashing damage"
+        ]
     }
 ];
