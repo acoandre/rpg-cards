@@ -184,7 +184,7 @@ function ui_render_selected_card() {
 }
 
 function ui_open_help() {
-    window.open("http://crobi.github.io/rpg-cards/", "_blank");
+    $("#help-modal").modal('show');
 }
 
 function ui_select_icon() {
