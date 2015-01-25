@@ -125,8 +125,10 @@ function ui_selected_card() {
 }
 
 function ui_delete_card() {
-    card_data.splice(ui_selected_card_index(), 1);
+    var index = ui_selected_card_index();
+    card_data.splice(index, 1);
     ui_update_card_list();
+    ui_select_card_by_index(Math.min(index, card_data.length - 1));
 }
 
 function ui_update_card_list() {
@@ -168,6 +170,14 @@ function ui_update_selected_card() {
         $("#card-icon-back").val(card.icon_back);
         $("#card-contents").val(card.contents.join("\n"));
         $("#card-color").val(card.color).change();
+    } else {
+        $("#card-title").val("");
+        $("#card-title-size").val("");
+        $("#card-count").val(1);
+        $("#card-icon").val("");
+        $("#card-icon-back").val("");
+        $("#card-contents").val("");
+        $("#card-color").val("").change();
     }
 
     ui_render_selected_card();
