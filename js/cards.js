@@ -22,8 +22,20 @@ function card_default_data() {
     return {
         count: 1,
         title: "New card",
-        contents: []
+        contents: [],
+        tags: []
     }
+}
+
+function card_init(card) {
+    card.title = card.title || "";
+    card.contents = card.contents || [];
+    card.tags = card.tags || [];
+}
+
+function card_has_tag(card, tag) {
+    var index = card.tags.indexOf(tag.toLowerCase());
+    return index > -1;
 }
 
 // ============================================================================

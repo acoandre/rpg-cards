@@ -18,7 +18,8 @@ var card_data_example = [
             "fill | 3",
             "section | At higher levels",
             "text | +1d6 damage for each slot above 1st"
-        ]
+        ],
+        "tags": ["spell", "mage"]
     },
     {
         "count": 1,
@@ -33,8 +34,9 @@ var card_data_example = [
             "text | You can take a <b>bonus action on each of your turns</b> in combat. This action can be used only to take the <b>Dash, Disengage, or Hide</b> action.",
             "fill | 2",
             "section | Fast hands (Thief 3rd)",
-            "text | You can also use the bonus action to make a Dexterity (<b>Sleight of Hand</b>) check, use your thieves' tools to <b>disarm a trap</b> or <b>open a lock</b>, or take the <b>Use an Object</b> action.",
-        ]
+            "text | You can also use the bonus action to make a Dexterity (<b>Sleight of Hand</b>) check, use your thieves' tools to <b>disarm a trap</b> or <b>open a lock</b>, or take the <b>Use an Object</b> action."
+        ],
+        "tags": ["feature", "rogue"]
     },
     {
         "count": 1,
@@ -52,7 +54,8 @@ var card_data_example = [
             "description | Heavy | Unless you have the required strength, your speed is reduced by 10 feet.",
             "description | Stealth | You have disadvantage on Dexterity (Stealth) checks.",
             "fill | 3"
-        ]
+        ],
+        "tags": ["item", "armor"]
     },
     {
         "count": 1,
@@ -71,7 +74,8 @@ var card_data_example = [
             "description | Light | When you attack while dual wielding light weapons, you may use a bonus action to attack with your off hand.",
             "description | Thrown | You can throw the weapon to make a ranged attack with the given range.",
             "fill | 3"
-        ]
+        ],
+        "tags": ["item", "weapon"]
     },
     {
         "count": 1,
@@ -90,7 +94,8 @@ var card_data_example = [
             "description | Finesse | Use your choice of Strength or Dexterity modifier for attack and damage.",
             "description | Light | When you attack while dual wielding light weapons, you may use a bonus action to attack with your off hand.",
             "fill | 3"
-        ]
+        ],
+        "tags": ["item", "weapon", "magic"]
     },
     {
         "count": 1,
@@ -111,7 +116,8 @@ var card_data_example = [
             "bullet | magic missile, 3rd level (3 charges)",
             "fill | 3",
             "boxes | 7 | 2.5"
-        ]
+        ],
+        "tags": ["item", "wondrous-item", "magic"]
     },
     {
         "count": 2,
@@ -128,7 +134,8 @@ var card_data_example = [
             "text | When you drink this potion, you regain 2d4+2 hitpoints.",
             "text | Drinking or administering a potion takes 1 action.",
             "fill | 3"
-        ]
+        ],
+        "tags": ["item", "consumable"]
     },
     {
         "count": 1,
@@ -150,6 +157,7 @@ var card_data_example = [
             "fill | 2",
             "section | Actions",
             "description | Scimitar | Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 5 (1d6 + 2) slashing damage"
-        ]
+        ],
+        "tags": ["creature", "humanoid"]
     }
-];
+]

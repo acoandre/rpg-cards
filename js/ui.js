@@ -59,6 +59,7 @@ function ui_generate() {
 
 function ui_load_sample() {
     card_data = card_data_example;
+    ui_init_cards(card_data);
     ui_update_card_list();
 }
 
@@ -87,7 +88,14 @@ function ui_load_files(evt) {
     $("#file-load-form")[0].reset();
 }
 
+function ui_init_cards(data) {
+    data.forEach(function (card) {
+        card_init(card);
+    });
+}
+
 function ui_add_cards(data) {
+    ui_init_cards(data);
     card_data = card_data.concat(data);
     ui_update_card_list();
 }
@@ -169,6 +177,7 @@ function ui_update_selected_card() {
         $("#card-icon").val(card.icon);
         $("#card-icon-back").val(card.icon_back);
         $("#card-contents").val(card.contents.join("\n"));
+        $("#card-tags").val(card.tags.join(", "));
         $("#card-color").val(card.color).change();
     } else {
         $("#card-title").val("");
@@ -177,6 +186,7 @@ function ui_update_selected_card() {
         $("#card-icon").val("");
         $("#card-icon-back").val("");
         $("#card-contents").val("");
+        $("#card-tags").val("");
         $("#card-color").val("").change();
     }
 
@@ -333,6 +343,22 @@ function ui_change_card_contents() {
     }
 }
 
+function ui_change_card_tags() {
+    var value = $(this).val();
+
+    var card = ui_selected_card();
+    if (card) {
+        if (value.trim().length == 0) {
+            card.tags = [];
+        } else {
+            card.tags = value.split(",").map(function (val) {
+                return val.trim().toLowerCase();
+            });
+        }
+        ui_render_selected_card();
+    }
+}
+
 function ui_change_default_title_size() {
     card_options.default_title_size = $(this).val();
     ui_render_selected_card();
@@ -343,29 +369,40 @@ function ui_change_default_icon_size() {
     ui_render_selected_card();
 }
 
-function ui_sort_by_name() {
-    card_data = mergeSort(card_data, function (a, b) {
-        if (a.title > b.title) {
-            return 1;
-        }
-        if (a.title < b.title) {
-            return -1;
-        }
-        return 0;
+function ui_sort() {
+    $("#sort-modal").modal('show');
+}
+
+function ui_sort_execute() {
+    $("#sort-modal").modal('hide');
+
+    var fn_code = $("#sort-function").val();
+    var fn = new Function("card_a", "card_b", fn_code);
+
+    card_data = card_data.sort(function (card_a, card_b) {
+        var result = fn(card_a, card_b);
+        return result;
     });
+
     ui_update_card_list();
 }
 
-function ui_sort_by_icon() {
-    card_data = mergeSort(card_data, function (a, b) {
-        if (a.icon > b.icon) {
-            return 1;
-        }
-        if (a.icon < b.icon) {
-            return -1;
-        }
-        return 0;
+function ui_filter() {
+    $("#filter-modal").modal('show');
+}
+
+function ui_filter_execute() {
+    $("#filter-modal").modal('hide');
+
+    var fn_code = $("#filter-function").val();
+    var fn = new Function("card", fn_code);
+
+    card_data = card_data.filter(function (card) {
+        var result = fn(card);
+        if (result === undefined) return true;
+        else return false;
     });
+
     ui_update_card_list();
 }
 
@@ -400,8 +437,8 @@ $(document).ready(function () {
     $("#button-clear").click(ui_clear_all);
     $("#button-load-sample").click(ui_load_sample);
     //$("#button-save").click(ui_save_file);
-    $("#button-sort-name").click(ui_sort_by_name);
-    $("#button-sort-icon").click(ui_sort_by_icon);
+    $("#button-sort").click(ui_sort);
+    $("#button-filter").click(ui_filter);
     $("#button-add-card").click(ui_add_new_card);
     $("#button-duplicate-card").click(ui_duplicate_card);
     $("#button-delete-card").click(ui_delete_card);
@@ -419,6 +456,7 @@ $(document).ready(function () {
     $("#card-icon-back").change(ui_change_card_property);
     $("#card-color").change(ui_change_card_color);
     $("#card-contents").change(ui_change_card_contents);
+    $("#card-tags").change(ui_change_card_tags);
 
     $("#page-size").change(ui_change_option);
     $("#page-rows").change(ui_change_option);
@@ -433,6 +471,9 @@ $(document).ready(function () {
     $("#small-icons").change(ui_change_default_icon_size);
 
     $(".icon-select-button").click(ui_select_icon);
+
+    $("#sort-execute").click(ui_sort_execute);
+    $("#filter-execute").click(ui_filter_execute);
     
     ui_update_card_list();
 });

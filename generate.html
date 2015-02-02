@@ -67,7 +67,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <button type="button" class="btn btn-primary btn-block" id="button-sort-name">Sort by name</button>
+                            <button type="button" class="btn btn-primary btn-block" id="button-sort">Sort</button>
                         </div>
                         <div class="col-sm-6">
                             <button type="button" class="btn btn-primary btn-block" id="button-save" onclick="ui_save_file()">Save to file</button>
@@ -76,7 +76,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <button type="button" class="btn btn-primary btn-block" id="button-sort-icon">Sort by icon</button>
+                            <button type="button" class="btn btn-primary btn-block" id="button-filter">Map/Filter</button>
                         </div>
                         <div class="col-sm-6">
                             <button type="button" class="btn btn-success btn-block" id="button-generate">Generate</button>
@@ -267,6 +267,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="card-tags" class="col-sm-2 control-label">Tags</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="card-tags" class="form-control" placeholder="Tags">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="card-icon" class="col-sm-2 control-label">Icon</label>
                         <div class="col-sm-10">
                             <div class="input-group">
@@ -341,7 +347,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal (Info)-->
     <div class="modal" id="help-modal" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -374,6 +380,69 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal (Sort)-->
+    <div class="modal" id="sort-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Sort cards</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Enter the comparison function below.
+                        The comparison function is a block of javascript code.
+                        Return -1 if card_a should appear before card_b.
+                    </p>
+                    <textarea class="form-control" rows="10" id="sort-function" wrap="off">
+if (card_a.title < card_b.title) {
+    return -1;
+}
+else if (card_a.title > card_b.title) {
+    return 1;
+}
+else {
+    return 0;
+}
+                    </textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="sort-execute">Sort</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal (Filter)-->
+    <div class="modal" id="filter-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Filter/map cards</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Enter code below that will be executed for each card in the deck.
+                        Return false to remove the current card from the deck.
+                    </p>
+                    <textarea class="form-control" rows="10" id="filter-function" wrap="off">
+// Color all spell cards yellow
+if (card_has_tag(card, "spell")) {
+    card.color = "yellow";
+}
+
+// Remove all creature cards
+if (card_has_tag(card, "creature")) {
+    return false;
+}
+                    </textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="filter-execute">Filter</button>
                 </div>
             </div>
         </div>
