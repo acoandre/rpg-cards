@@ -400,7 +400,7 @@ function ui_filter_execute() {
     card_data = card_data.filter(function (card) {
         var result = fn(card);
         if (result === undefined) return true;
-        else return false;
+        else return result;
     });
 
     ui_update_card_list();

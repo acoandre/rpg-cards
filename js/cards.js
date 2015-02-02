@@ -34,8 +34,24 @@ function card_init(card) {
 }
 
 function card_has_tag(card, tag) {
-    var index = card.tags.indexOf(tag.toLowerCase());
+    tag = tag.trim().toLowerCase();
+    var index = card.tags.indexOf(tag);
     return index > -1;
+}
+
+function card_add_tag(card, tag) {
+    tag = tag.trim().toLowerCase();
+    var index = card.tags.indexOf(tag);
+    if (index == -1) {
+        card.tags.push(tag);
+    }
+}
+
+function card_remove_tag(card, tag) {
+    tag = tag.trim().toLowerCase();
+    card.tags = card.tags.filter(function (t) {
+        return tag != t;
+    });
 }
 
 // ============================================================================
