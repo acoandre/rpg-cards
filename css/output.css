@@ -3,9 +3,8 @@
 }
 
 body {
-    display: flex;
-    justify-content:center;
-    align-content:center;
+  margin: 0;
+  padding: 0;
 }
 
 .page-preview {
@@ -20,14 +19,14 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
-    box-shadow: 0;
+    box-shadow: none;
     background-color: white;
   }
   .page-background {
     margin: 0;
     padding: 0;
     border: 0;
-    box-shadow: 0;
+    box-shadow: none;
     /* Set the background to gray to visualize the page size in the print preview */
     background-color: gray;
   }
