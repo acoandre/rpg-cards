@@ -176,6 +176,7 @@ function ui_update_selected_card() {
         $("#card-count").val(card.count);
         $("#card-icon").val(card.icon);
         $("#card-icon-back").val(card.icon_back);
+		$("#card-background").val(card.background_image);
         $("#card-contents").val(card.contents.join("\n"));
         $("#card-tags").val(card.tags.join(", "));
         $("#card-color").val(card.color).change();
@@ -185,6 +186,7 @@ function ui_update_selected_card() {
         $("#card-count").val(1);
         $("#card-icon").val("");
         $("#card-icon-back").val("");
+		$("#card-background").val("")
         $("#card-contents").val("");
         $("#card-tags").val("");
         $("#card-color").val("").change();
@@ -454,7 +456,8 @@ $(document).ready(function () {
     $("#card-icon").change(ui_change_card_property);
     $("#card-count").change(ui_change_card_property);
     $("#card-icon-back").change(ui_change_card_property);
-    $("#card-color").change(ui_change_card_color);
+	$("#card-background").change(ui_change_card_property);
+	$("#card-color").change(ui_change_card_color);
     $("#card-contents").change(ui_change_card_contents);
     $("#card-tags").change(ui_change_card_tags);
 

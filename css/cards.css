@@ -23,7 +23,7 @@
 }
 
 .card-back {
-    background-color: white;
+/*     background-color: white; */
     border-radius: 4mm;
     border-color: inherit;
     margin: 3mm;
@@ -129,13 +129,17 @@
 }
 .card-subtitle {
     height: 18px;
-    line-height: 18px;
     margin-bottom: 0.0em;
+    line-height: 18px;
     font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
     font-size: 10pt;
     font-style: italic;
 }
-
+.card-picture {
+    height: 80px;
+    line-height: 18px;
+    margin-bottom: 0.0em;
+}
 .card-property-line {
     text-indent: -1em;
     margin-left: 1em;

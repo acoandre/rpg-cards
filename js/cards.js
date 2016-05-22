@@ -108,6 +108,12 @@ function card_element_subtitle(params, card_data, options) {
     return '<div class="card-element card-subtitle">' + subtitle + '</div>';
 }
 
+function card_element_picture(params, card_data, options) {
+    var url = params[0] || "";
+	var height = params[1] || "";
+    return '<div class="card-element card-picture" style ="background-image: url(&quot;' + url + '&quot;); background-size: contain; background-position: center;background-repeat: no-repeat; height:' + height + 'px"></div>';
+}
+
 function card_element_ruler(params, card_data, options) {
     var color = card_data_color_front(card_data, options);
     var fill = 'fill="' + color + '"';
@@ -144,6 +150,13 @@ function card_element_property(params, card_data, options) {
     result += '<div class="card-element card-property-line">';
     result += '   <h4 class="card-property-name">' + params[0] + '</h4>';
     result += '   <p class="card-p card-property-text">' + params[1] + '</p>';
+	if (params[2])
+	{
+		result += '   <div style="float:right">';
+		result += '       <h4 class="card-property-name">' + params[2] + '</h4>';
+		result += '       <p class="card-p card-property-text">' + params[3] + '</p>';
+		result += '   </div>';
+	}
     result += '</div>';
     return result;
 }
@@ -241,7 +254,8 @@ var card_element_generators = {
     bullet: card_element_bullet,
     fill: card_element_fill,
     section: card_element_section,
-    disabled: card_element_empty
+    disabled: card_element_empty,
+	picture: card_element_picture
 };
 
 // ============================================================================
@@ -299,15 +313,27 @@ function card_generate_front(data, options) {
 function card_generate_back(data, options) {
     var color = card_data_color_back(data, options)
     var style_color = card_generate_color_style(color, options);
-    var style_gradient = card_generate_color_gradient_style(color, options);
-    var icon = card_data_icon_back(data, options);
+	var url = data.background_image;
+	var background_style = "";
+	if (url)
+	{
+		background_style = 'style = "background-image: url(&quot;' + url + '&quot;); background-size: contain; background-position: center; background-repeat: no-repeat;"'
+	}
+	else 
+	{
+		background_style = card_generate_color_gradient_style(color, options);
+    }
+	var icon = card_data_icon_back(data, options);
 
     var result = "";
     result += '<div class="card card-size-' + options.card_size + '" ' + style_color + '>';
-    result += '  <div class="card-back" ' + style_gradient + '>';
-    result += '    <div class="card-back-inner">';
-    result += '      <div class="card-back-icon icon-' + icon + '" ' + style_color + '></div>';
-    result += '    </div>';
+    result += '  <div class="card-back" ' + background_style + '>';
+	if (!url)
+	{
+		result += '    <div class="card-back-inner">';
+		result += '      <div class="card-back-icon icon-' + icon + '" ' + style_color + '></div>';
+		result += '    </div>';
+	}
     result += '  </div>';
     result += '</div>';
 
