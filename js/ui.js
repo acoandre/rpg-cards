@@ -192,6 +192,7 @@ function ui_update_selected_card() {
         $("#card-color").val("").change();
     }
 
+    local_store_save();
     ui_render_selected_card();
 }
 
@@ -429,7 +430,31 @@ function ui_apply_default_icon_back() {
     ui_render_selected_card();
 }
 
+
+//Adding support for local store
+function local_store_save() {
+    if(window.localStorage){
+        try {
+            localStorage.setItem("card_data", JSON.stringify(card_data));
+        } catch (e){
+            //if the local store save failed should we notify the user that the data is not being saved?
+            console.log(e);
+        }
+    }
+}
+function local_store_load() {
+    if(window.localStorage){
+        try {
+            card_data = JSON.parse(localStorage.getItem("card_data")) || card_data;
+        } catch (e){
+            //if the local store load failed should we notify the user that the data load failed?
+            console.log(e);
+        }
+    }
+}
+
 $(document).ready(function () {
+    local_store_load();
     ui_setup_color_selector();
     $('.icon-list').typeahead({source:icon_names});
 
@@ -477,7 +502,7 @@ $(document).ready(function () {
 
     $("#sort-execute").click(ui_sort_execute);
     $("#filter-execute").click(ui_filter_execute);
-    
+
     ui_update_card_list();
 });
 
