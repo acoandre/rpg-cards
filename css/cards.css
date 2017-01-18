@@ -1,12 +1,12 @@
 .card {
     border: 2mm solid;
-    border-radius: 4px;
     box-sizing: border-box;
     position: relative;
     display: flex;
     flex-direction: column;
     font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
     font-size: 8pt;
+    overflow: hidden;
 }
 
 .card-content-container {
@@ -140,6 +140,25 @@
     line-height: 18px;
     margin-bottom: 0.0em;
 }
+.card-inline-icon {
+    background-size: auto 80%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+    border-radius: 2mm;
+}
+
+.card-inline-icon.align-left {
+}
+
+.card-inline-icon.align-right {
+    margin-right: 0px;
+}
+
+.card-inline-icon.align-center {
+    left: 50%;
+}
+
 .card-property-line {
     text-indent: -1em;
     margin-left: 1em;
