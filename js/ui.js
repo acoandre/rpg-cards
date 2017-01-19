@@ -456,7 +456,27 @@ function local_store_load() {
 $(document).ready(function () {
     local_store_load();
     ui_setup_color_selector();
-    $('.icon-list').typeahead({source:icon_names});
+    $('.icon-list').typeahead({
+        source:icon_names,
+        items: 'all',
+        render: function (items) {
+          var that = this;
+
+          items = $(items).map(function (i, item) {
+            i = $(that.options.item).data('value', item);
+            i.find('a').html(that.highlighter(item));
+            var classname = 'icon-' + item.split(' ').join('-').toLowerCase()
+            i.find('a').append('<span class="' + classname + '"></span>')
+            return i[0];
+          });
+
+          if (this.autoSelect) {
+            items.first().addClass('active');
+          }
+          this.$menu.html(items);
+          return this;
+        }
+    });
 
     $("#button-generate").click(ui_generate);
     $("#button-load").click(function () { $("#file-load").click(); });
