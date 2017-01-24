@@ -178,6 +178,22 @@ function card_element_text(params, card_data, options) {
     return result;
 }
 
+function card_element_center(params, card_data, options) {
+    var result = "";
+    result += '<div class="card-element card-description-line" style="text-align: center">';
+    result += '   <p class="card-p card-description-text">' + params[0] + '</p>';
+    result += '</div>';
+    return result;
+}
+
+function card_element_justify(params, card_data, options) {
+    var result = "";
+    result += '<div class="card-element card-description-line" style="text-align: justify; hyphens: auto">';
+    result += '   <p class="card-p card-description-text">' + params[0] + '</p>';
+    result += '</div>';
+    return result;
+}
+
 function card_element_dndstats(params, card_data, options) {
     var stats = [10, 10, 10, 10, 10, 10];
     var mods = [0,0,0,0,0,0];
@@ -251,6 +267,8 @@ var card_element_generators = {
     description: card_element_description,
     dndstats: card_element_dndstats,
     text: card_element_text,
+    center: card_element_center,
+    justify: card_element_justify,
     bullet: card_element_bullet,
     fill: card_element_fill,
     section: card_element_section,
