@@ -162,11 +162,16 @@ function ui_save_file() {
 
     var a = $("#file-save-link")[0];
     a.href = url;
-    a.download = "rpg_cards.json";
+    a.download = prompt("Filename: (blank for default)", ui_save_file.filename)
+    if(!a.download || a.download == 'null') {
+        return
+    }
+    ui_save_file.filename = a.download
     a.click();
 
     setTimeout(function () { URL.revokeObjectURL(url); }, 500);
 }
+ui_save_file.filename = 'rpg_cards.json'
 
 function ui_update_selected_card() {
     var card = ui_selected_card();
