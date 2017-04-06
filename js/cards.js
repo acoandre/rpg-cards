@@ -14,7 +14,8 @@ function card_default_options() {
         card_arrangement: "doublesided",
         card_size: "25x35",
         card_count: null,
-        icon_inline: true
+        icon_inline: true,
+        rounded_corners: true
     }
 }
 
@@ -317,7 +318,7 @@ function card_generate_front(data, options) {
     var style_color = card_generate_color_style(color, options);
 
     var result = "";
-    result += '<div class="card card-size-' + options.card_size + '" ' + style_color + '>';
+    result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
     result += card_element_icon(data, options);
     result += card_element_title(data, options);
     result += card_generate_contents(data.contents, data, options);
@@ -342,7 +343,8 @@ function card_generate_back(data, options) {
 	var icon = card_data_icon_back(data, options);
 
     var result = "";
-    result += '<div class="card card-size-' + options.card_size + '" ' + style_color + '>';
+    console.log('options.rounded_corners', options.rounded_corners);
+    result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
     result += '  <div class="card-back" ' + background_style + '>';
 	if (!url)
 	{

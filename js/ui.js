@@ -269,10 +269,15 @@ function ui_set_background_color(color) {
 
 function ui_change_option() {
     var property = $(this).attr("data-option");
-    var value = $(this).val();
+    var value
+    if($(this).attr('type') == 'checkbox') {
+        value = $(this).is(':checked');
+    }
+    else {
+        value = $(this).val();
+    }
     card_options[property] = value;
     ui_render_selected_card();
-
 }
 
 function ui_change_card_title() {
@@ -492,6 +497,7 @@ $(document).ready(function () {
     $("#card-arrangement").change(ui_change_option);
     $("#card-size").change(ui_change_option);
     $("#background-color").change(ui_change_option);
+    $("#rounded-corners").change(ui_change_option);
 
     $("#default-color").change(ui_change_default_color);
     $("#default-icon").change(ui_change_default_icon);
