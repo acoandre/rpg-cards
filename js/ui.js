@@ -54,7 +54,7 @@ function ui_generate() {
 
     // Send the generated HTML to the new window
     // Use a delay to give the new window time to set up a message listener
-    setTimeout(function () { tab.postMessage(card_html, '*') }, 500);
+    setTimeout(function () { tab.postMessage(card_html, '*'); }, 500);
 }
 
 function ui_load_sample() {
@@ -190,7 +190,7 @@ function ui_update_selected_card() {
         $("#card-count").val(1);
         $("#card-icon").val("");
         $("#card-icon-back").val("");
-		$("#card-background").val("")
+		$("#card-background").val("");
         $("#card-contents").val("");
         $("#card-tags").val("");
         $("#card-color").val("").change();
@@ -207,7 +207,7 @@ function ui_render_selected_card() {
         var back = card_generate_back(card, card_options);
         $('#preview-container').html(front + "\n" + back);
     }
-    local_store_save()
+    local_store_save();
 }
 
 function ui_open_help() {
@@ -351,12 +351,12 @@ function ui_change_card_contents() {
 }
 
 function ui_change_card_contents_keyup () {
-    clearTimeout(ui_change_card_contents_keyup.timeout)
+    clearTimeout(ui_change_card_contents_keyup.timeout);
     ui_change_card_contents_keyup.timeout = setTimeout(function () {
-        $('#card-contents').trigger('change')
-    }, 200)
+        $('#card-contents').trigger('change');
+    }, 200);
 }
-ui_change_card_contents_keyup.timeout = null
+ui_change_card_contents_keyup.timeout = null;
 
 function ui_change_card_tags() {
     var value = $(this).val();
@@ -469,7 +469,7 @@ $(document).ready(function () {
     local_store_load();
     ui_setup_color_selector();
     $('.icon-list').typeahead({
-        source:icon_names,
+        source: icon_names,
         items: 'all',
         render: function (items) {
           var that = this;
@@ -477,8 +477,8 @@ $(document).ready(function () {
           items = $(items).map(function (i, item) {
             i = $(that.options.item).data('value', item);
             i.find('a').html(that.highlighter(item));
-            var classname = 'icon-' + item.split(' ').join('-').toLowerCase()
-            i.find('a').append('<span class="' + classname + '"></span>')
+            var classname = 'icon-' + item.split(' ').join('-').toLowerCase();
+            i.find('a').append('<span class="' + classname + '"></span>');
             return i[0];
           });
 
@@ -540,6 +540,3 @@ $(document).ready(function () {
 
     ui_update_card_list();
 });
-
-
-

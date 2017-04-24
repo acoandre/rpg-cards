@@ -15,7 +15,7 @@ function card_default_options() {
         card_size: "25x35",
         card_count: null,
         icon_inline: true
-    }
+    };
 }
 
 function card_default_data() {
@@ -24,7 +24,7 @@ function card_default_data() {
         title: "New card",
         contents: [],
         tags: []
-    }
+    };
 }
 
 function card_init(card) {
@@ -329,13 +329,13 @@ function card_generate_front(data, options) {
 }
 
 function card_generate_back(data, options) {
-    var color = card_data_color_back(data, options)
+    var color = card_data_color_back(data, options);
     var style_color = card_generate_color_style(color, options);
 	var url = data.background_image;
 	var background_style = "";
 	if (url)
 	{
-		background_style = 'style = "background-image: url(&quot;' + url + '&quot;); background-size: contain; background-position: center; background-repeat: no-repeat;"'
+		background_style = 'style = "background-image: url(&quot;' + url + '&quot;); background-size: contain; background-position: center; background-repeat: no-repeat;"';
 	}
 	else 
 	{
