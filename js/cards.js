@@ -14,7 +14,8 @@ function card_default_options() {
         card_arrangement: "doublesided",
         card_size: "25x35",
         card_count: null,
-        icon_inline: true
+        icon_inline: true,
+        rounded_corners: true
     };
 }
 
@@ -108,9 +109,24 @@ function card_element_subtitle(params, card_data, options) {
     return '<div class="card-element card-subtitle">' + subtitle + '</div>';
 }
 
+function card_element_inline_icon(params, card_data, options) {
+    var icon = params[0] || "";
+    var size = params[1] || "40";
+    var align = params[2] || "center";
+    var margin_left = 0;
+    var color = card_data_color_front(card_data, options);
+    if(align == "center") {
+        margin_left = (size/-2) + 'px';
+    }
+    else if (align == 'right') {
+        margin_left = 'auto';
+    }
+    return '<div class="card-element card-inline-icon align-' + align + ' icon-' + icon + '" style ="height:' + size + 'px; width: ' + size + 'px; margin-left: ' + margin_left + '; background-color: ' + color + '"></div>';
+}
+
 function card_element_picture(params, card_data, options) {
     var url = params[0] || "";
-	var height = params[1] || "";
+    var height = params[1] || "";
     return '<div class="card-element card-picture" style ="background-image: url(&quot;' + url + '&quot;); background-size: contain; background-position: center;background-repeat: no-repeat; height:' + height + 'px"></div>';
 }
 
@@ -273,7 +289,8 @@ var card_element_generators = {
     fill: card_element_fill,
     section: card_element_section,
     disabled: card_element_empty,
-	picture: card_element_picture
+    picture: card_element_picture,
+    icon: card_element_inline_icon
 };
 
 // ============================================================================
@@ -319,7 +336,7 @@ function card_generate_front(data, options) {
     var style_color = card_generate_color_style(color, options);
 
     var result = "";
-    result += '<div class="card card-size-' + options.card_size + '" ' + style_color + '>';
+    result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
     result += card_element_icon(data, options);
     result += card_element_title(data, options);
     result += card_generate_contents(data.contents, data, options);
@@ -344,7 +361,8 @@ function card_generate_back(data, options) {
 	var icon = card_data_icon_back(data, options);
 
     var result = "";
-    result += '<div class="card card-size-' + options.card_size + '" ' + style_color + '>';
+    console.log('options.rounded_corners', options.rounded_corners);
+    result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
     result += '  <div class="card-back" ' + background_style + '>';
 	if (!url)
 	{
