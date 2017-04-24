@@ -43,7 +43,7 @@ function card_has_tag(card, tag) {
 function card_add_tag(card, tag) {
     tag = tag.trim().toLowerCase();
     var index = card.tags.indexOf(tag);
-    if (index == -1) {
+    if (index === -1) {
         card.tags.push(tag);
     }
 }
@@ -51,7 +51,7 @@ function card_add_tag(card, tag) {
 function card_remove_tag(card, tag) {
     tag = tag.trim().toLowerCase();
     card.tags = card.tags.filter(function (t) {
-        return tag != t;
+        return tag !== t;
     });
 }
 
@@ -115,10 +115,10 @@ function card_element_inline_icon(params, card_data, options) {
     var align = params[2] || "center";
     var margin_left = 0;
     var color = card_data_color_front(card_data, options);
-    if(align == "center") {
+    if (align === "center") {
         margin_left = (size/-2) + 'px';
     }
-    else if (align == 'right') {
+    else if (align === 'right') {
         margin_left = 'auto';
     }
     return '<div class="card-element card-inline-icon align-' + align + ' icon-' + icon + '" style ="height:' + size + 'px; width: ' + size + 'px; margin-left: ' + margin_left + '; background-color: ' + color + '"></div>';
@@ -450,7 +450,7 @@ function card_pages_wrap(pages, options) {
     var result = "";
     for (var i = 0; i < pages.length; ++i) {
         var style = "";
-        if ((options.card_arrangement == "doublesided") &&  (i % 2 == 1)) {
+        if ((options.card_arrangement === "doublesided") &&  (i % 2 === 1)) {
             style += 'style="background-color:' + options.background_color + '"';
         } else {
             style += 'style="background-color:' + options.foreground_color + '"';
@@ -501,7 +501,7 @@ function card_pages_generate_html(card_data, options) {
     });
 
     var pages = [];
-    if (options.card_arrangement == "doublesided") {
+    if (options.card_arrangement === "doublesided") {
         // Add padding cards so that the last page is full of cards
         front_cards = card_pages_add_padding(front_cards, options);
         back_cards = card_pages_add_padding(back_cards, options);
@@ -517,10 +517,10 @@ function card_pages_generate_html(card_data, options) {
 
         // Interleave front and back pages so that we can print double-sided
         pages = card_pages_merge(front_pages, back_pages);
-    } else if (options.card_arrangement == "front_only") {
+    } else if (options.card_arrangement === "front_only") {
         var cards = card_pages_add_padding(front_cards, options);
         pages = card_pages_split(cards, rows, cols);
-    } else if (options.card_arrangement == "side_by_side") {
+    } else if (options.card_arrangement === "side_by_side") {
         var cards = card_pages_interleave_cards(front_cards, back_cards, options);
         cards = card_pages_add_padding(cards, options);
         pages = card_pages_split(cards, rows, cols);

@@ -35,7 +35,7 @@ function merge(left, right, compare) {
 
 var ui_generate_modal_shown = false;
 function ui_generate() {
-    if (card_data.length == 0) {
+    if (card_data.length === 0) {
         alert("Your deck is empty. Please define some cards first, or load the sample deck.");
         return;
     }
@@ -47,7 +47,7 @@ function ui_generate() {
     // Use a separate window to avoid CSS conflicts
     var tab = window.open("output.html", 'rpg-cards-output');
 
-    if (ui_generate_modal_shown == false) {
+    if (ui_generate_modal_shown === false) {
         $("#print-modal").modal('show');
         ui_generate_modal_shown = true;
     }
@@ -273,8 +273,8 @@ function ui_set_background_color(color) {
 
 function ui_change_option() {
     var property = $(this).attr("data-option");
-    var value
-    if($(this).attr('type') == 'checkbox') {
+    var value;
+    if ($(this).attr('type') === 'checkbox') {
         value = $(this).is(':checked');
     }
     else {
@@ -368,7 +368,7 @@ function ui_change_card_tags() {
 
     var card = ui_selected_card();
     if (card) {
-        if (value.trim().length == 0) {
+        if (value.trim().length === 0) {
             card.tags = [];
         } else {
             card.tags = value.split(",").map(function (val) {
