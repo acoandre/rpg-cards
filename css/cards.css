@@ -153,14 +153,15 @@
 }
 
 .card-inline-icon.align-left {
+    align-self: flex-start;
 }
 
 .card-inline-icon.align-right {
-    margin-right: 0px;
+    align-self: flex-end;
 }
 
 .card-inline-icon.align-center {
-    left: 50%;
+    align-self: center;
 }
 
 .card-property-line {
