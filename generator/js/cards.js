@@ -136,6 +136,18 @@ function card_element_ruler(params, card_data, options) {
     return result;
 }
 
+function card_element_smallruler(params, card_data, options) {
+    var color = card_data_color_front(card_data, options);
+    var fill = 'fill="' + color + '"';
+    var stroke = 'stroke="' + color + '"';
+
+    var result = "";
+    result += '<svg class="card-small-ruler" height="1" width="100" viewbox="0 0 100 1" preserveaspectratio="none" xmlns="http://www.w3.org/2000/svg">';
+    result += '    <polyline points="0,0 100,0.5 0,1" ' + fill + '></polyline>';
+    result += '</svg>';
+    return result;
+}
+
 function card_element_boxes(params, card_data, options) {
     var color = card_data_color_front(card_data, options);
     var fill = ' fill="none"';
@@ -371,6 +383,7 @@ var card_element_generators = {
     property: card_element_property,
     rule: card_element_ruler,
     ruler: card_element_ruler,
+	smallruler: card_element_smallruler,
     boxes: card_element_boxes,
     description: card_element_description,
     dndstats: card_element_dndstats,
