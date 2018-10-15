@@ -107,7 +107,17 @@ function card_element_icon(card_data, options) {
 
 function card_element_subtitle(params, card_data, options) {
     var subtitle = params[0] || "";
-    return '<div class="card-element card-subtitle">' + subtitle + '</div>';
+	
+    var result = "";
+	result += '<div class="card-element card-subtitle">' + subtitle
+	if (params[1])
+	{
+		result += '   <div style="float:right">';
+		result += '       <p>' + params[1] + '</p>';
+		result += '   </div>';
+	}
+    result += '</div>';
+    return result;
 }
 
 function card_element_inline_icon(params, card_data, options) {
