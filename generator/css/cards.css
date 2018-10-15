@@ -257,6 +257,25 @@
 	color: black
 }
 
+.weapon-stats {
+    width: 100%;
+	table-layout: fixed;
+	color: black;
+}
+
+.weapon-stats-name {
+    text-align: left;
+    vertical-align: top;
+    padding: 0;
+}
+
+.weapon-stats-cell {
+    text-align: center;
+    vertical-align: top;
+    padding: 0;
+    width: 30px;
+}
+
 .card-bullet-line {
     font-size: inherit;
     color: black;
