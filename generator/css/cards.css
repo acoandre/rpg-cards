@@ -9,6 +9,11 @@
     overflow: hidden;
 }
 
+.card h4 {
+    /* Revert bootstrap style for the card preview */
+    font-weight: bold;
+}
+
 .card.rounded-corners {
     border-radius: 4px;
 }
