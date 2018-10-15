@@ -537,9 +537,12 @@ function card_pages_generate_style(options) {
     switch (options.page_size) {
         case "A3": size = "A3 portrait"; break;
         case "A4": size = "210mm 297mm"; break;
+        case "A4L": size = "297mm 210mm"; break;
         case "A5": size = "A5 portrait"; break;
         case "Letter": size = "letter portrait"; break;
+        case "LetterL": size = "letter landscape"; break;
         case "25x35": size = "2.5in 3.5in"; break;
+        case "35x25": size = "3.5in 2.5in"; break;
         default: size = "auto";
     }
 
