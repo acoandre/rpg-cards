@@ -6,32 +6,11 @@
     align-items: center;
 }
 
-/* Small screen (preview fills all columns) */
-@media (max-width : 1199px) {
-    .preview-container {
-        flex-direction: row;
-    }
-    .card {
-        margin-right: 10px;
-    }
+.preview-container {
+	flex-direction: column;
 }
-/* Large screen (preview fills one column, columns are narrow) */
-@media (min-width: 1200px) and (max-width : 1599px) {
-    .preview-container {
-        flex-direction: column;
-    }
-    .card {
-        margin-bottom: 10px;
-    }
-}
-/* Huge screen (preview fills one column, columns are wide) */
-@media (min-width : 1600px) {
-    .preview-container {
-        flex-direction: row;
-    }
-    .card {
-        margin-right: 10px;
-    }
+.card {
+	margin-bottom: 10px;
 }
 
 .row-eq-height {
