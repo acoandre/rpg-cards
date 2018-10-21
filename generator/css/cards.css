@@ -9,6 +9,19 @@
     overflow: hidden;
 }
 
+.card table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
 .card h4 {
     /* Revert bootstrap style for the card preview */
     font-weight: bold;
