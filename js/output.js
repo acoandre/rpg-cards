@@ -1,6 +1,8 @@
 function receiveMessage(event) {
     var html = event.data;
-    insertCards(html);
+    if (typeof html === 'string') {
+        insertCards(html);
+    }
 }
 
 function insertCards(html) {
