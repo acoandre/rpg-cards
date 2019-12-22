@@ -389,6 +389,11 @@ function ui_change_default_icon_size() {
     ui_render_selected_card();
 }
 
+function ui_change_default_gradient() {
+    card_options.icon_gradient = $(this).is(':checked');
+    ui_render_selected_card();
+}
+
 function ui_sort() {
     $("#sort-modal").modal('show');
 }
@@ -538,6 +543,7 @@ $(document).ready(function () {
     $("#default-icon").change(ui_change_default_icon);
     $("#default-title-size").change(ui_change_default_title_size);
     $("#small-icons").change(ui_change_default_icon_size);
+    $("#gradient").change(ui_change_default_gradient);
 
     $(".icon-select-button").click(ui_select_icon);
 
