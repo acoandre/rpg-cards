@@ -2,7 +2,7 @@
   "name": "rpg-cards",
   "version": "1.0.0",
   "description": "RPG card generator",
-  "main": "generator/generate.html",
+  "main": "generator/index.html",
   "devDependencies": {
     "fs-extra": "^3.0.0",
     "mv": "^2.1.1",
