@@ -321,6 +321,11 @@ function card_generate_color_style(color, options) {
     return 'style="color:' + color + '; border-color:' + color + '; background-color:' + color + '"';
 }
 
+
+function card_generate_color_style_with_margin(color, options) {
+    return 'style="color:' + color + '; border-color:' + color + '; background-color:' + color + '; margin: 1px"';
+}
+
 function card_generate_color_gradient_style(color, options) {
     if(options.icon_gradient){
         return 'style="background: radial-gradient(ellipse at center, white 20%, ' + color + ' 120%)"';
@@ -331,7 +336,7 @@ function card_generate_color_gradient_style(color, options) {
 
 function card_generate_front(data, options) {
     var color = card_data_color_front(data, options);
-    var style_color = card_generate_color_style(color, options);
+    var style_color = card_generate_color_style_with_margin(color, options);
 
     var result = "";
     result += '<div class="card card-size-' + options.card_size + ' ' + (options.rounded_corners ? 'rounded-corners' : '') + '" ' + style_color + '>';
@@ -345,7 +350,7 @@ function card_generate_front(data, options) {
 
 function card_generate_back(data, options) {
     var color = card_data_color_back(data, options);
-    var style_color = card_generate_color_style(color, options);
+    var style_color = card_generate_color_style_with_margin(color, options);
 	var url = data.background_image;
 	var background_style = "";
 	if (url)
