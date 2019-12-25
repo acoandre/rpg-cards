@@ -14,10 +14,9 @@
 }
 
 .card-content-container {
-    padding:2mm;
-    padding-top:1mm;
-    border-radius: 2mm;
-    margin-top:0px;
+    padding: 4px 8px 8px;
+    border-radius: 5px;
+    margin-top: 0;
     background-color: white;
     border-color: inherit;
     display: flex;
@@ -27,19 +26,18 @@
 }
 
 .card-back {
-/*     background-color: white; */
-    border-radius: 4mm;
+    border-radius: 3px;
     border-color: inherit;
-    margin: 3mm;
+    margin: 3px;
     flex: 1;
     display: flex;
 }
 
 .card-back-inner {
-    margin: 3mm;
-    border: 1mm solid;
+    margin: 10px;
+    border: 3px solid;
     border-color: inherit;
-    border-radius: 4mm;
+    border-radius: 3px;
     flex: 1;
     display: flex;
     flex-direction: row;
@@ -49,13 +47,11 @@
 }
 
 .card-back-icon {
-    width: 1in;
-    height: 1in;
-    border: 4mm solid;
     border-color: inherit;
-    border-radius: 4mm;
+    border-radius: 10px;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 70%;
+    background-position: center;
 }
 
 .card-title-icon {
