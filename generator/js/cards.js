@@ -318,7 +318,7 @@ function card_repeat(card, count) {
 }
 
 function card_generate_color_style(color, options) {
-    return 'style="color:' + color + '; border-color:' + color + '; background-color:' + color + '"';
+    return 'style="color:' + color + '; border-color:' + color + '; background-color:' + color + '; margin: 1px"';
 }
 
 function card_generate_color_gradient_style(color, options) {
