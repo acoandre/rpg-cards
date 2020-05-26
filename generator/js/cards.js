@@ -278,6 +278,43 @@ function card_element_dsa_creature_stats(params, card_data, options) {
     return result;
 }
 
+function card_element_dsa_armor_stats(params, card_data, options) {
+	var stats = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	for (var i = 0; i < 10; ++i) {
+        stats[i] = params[i] || 0;
+	}
+	
+	var result = "";
+    result += '<table class="card-stats" style="color: black;">';
+    result += '    <tbody><tr>';
+    result += '      <th class="card-stats-header">Ko</th>';
+    result += '      <th class="card-stats-header">Br</th>';
+    result += '      <th class="card-stats-header">Rü</th>';
+    result += '      <th class="card-stats-header">Ba</th>';
+    result += '      <th class="card-stats-header">LA</th>';
+    result += '      <th class="card-stats-header">RA</th>';
+    result += '      <th class="card-stats-header">LB</th>';
+    result += '      <th class="card-stats-header">RB</th>';
+    result += '      <th class="card-stats-header">gRS</th>';
+    result += '      <th class="card-stats-header">gBE</th>';
+    result += '    </tr>';
+    result += '    <tr>';
+    result += '      <td class="card-stats-cell">' + stats[0] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[1] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[2] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[3] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[4] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[5] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[6] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[7] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[8] + '</td>';
+    result += '      <td class="card-stats-cell">' + stats[9] + '</td>';
+    result += '    </tr>';
+    result += '  </tbody>';
+    result += '</table>';
+    return result;
+}
+
 function card_element_bullet(params, card_data, options) {
     var result = "";
     result += '<ul class="card-element card-bullet-line">';
@@ -314,6 +351,7 @@ var card_element_generators = {
     description: card_element_description,
     dndstats: card_element_dndstats,
 	dsacreature: card_element_dsa_creature_stats,
+	dsaarmor: card_element_dsa_armor_stats,
     text: card_element_text,
     center: card_element_center,
     justify: card_element_justify,
