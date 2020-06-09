@@ -15,7 +15,7 @@ function card_default_options() {
         card_size: "25x35",
         card_count: null,
         icon_inline: true,
-        icon_gradient: false,
+        icon_gradient: true,
         rounded_corners: true
     };
 }
