@@ -28,7 +28,12 @@
 /* Chrome has problems with page sizes given in metric units. Make the paper area slightly smaller to work around this. */
 page[size="A4"] {
     width:  210mm; /* full: 210.0mm */
-    height: 296mm; /* full: 297.0mm */
+    height: 296.9mm; /* full: 297.0mm */
+}
+
+page[size="A4L"] {
+    width:   297mm; /* full: 297.0mm */
+    height:  209.9mm; /* full: 210.0mm */
 }
 
 /* US letter area */
@@ -36,10 +41,19 @@ page[size="Letter"] {
     width:  8.5in;
     height: 11.0in;
 }
+page[size="LetterL"] {
+    width: 	11.0in;
+    height:  8.5in;
+}
 
 page[size="25x35"] {
     width: 2.5in;
     height: 3.5in;
+}
+
+page[size="35x25"] {
+    width: 3.5in;
+    height: 2.5in;
 }
 
 /* Default card size */
@@ -66,6 +80,16 @@ page[size="25x35"] {
 .card-size-25x35 .card-back-icon {
     width: 90px;
     height: 90px;
+}
+
+/* Poker / Magic card size Landscape */
+.card-size-35x25 {
+    width:3.5in;
+    height:2.5in;
+}
+.card-size-35x25 .card-back-icon {
+    width: 1in;
+    height: 1in;
 }
 
 /* Poker / Magic card size */
@@ -95,7 +119,17 @@ page[size="25x35"] {
     height:98mm;
 }
 
+.page[size="A4L"] .card-size-full3x3 {
+    width:98mm;
+    height:69mm;
+}
+
 .page[size="Letter"] .card-size-full3x3 {
     width:71mm;
     height:92mm;
+}
+
+.page[size="LetterL"] .card-size-full3x3 {
+    width:92mm;
+    height:71mm;
 }
