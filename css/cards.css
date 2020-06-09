@@ -76,7 +76,7 @@ p {
     border-color: inherit;
     border-radius: 10px;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: contain;
     background-position: center;
 	width: 100%;
 	height: 100%;
